@@ -15,4 +15,7 @@ public interface Geld<G> {
 	Geld<G> getNull();
 
 	Geld<G> invert();
+	
+	G value();
+	
 }

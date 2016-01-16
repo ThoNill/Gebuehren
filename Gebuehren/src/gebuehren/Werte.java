@@ -41,8 +41,7 @@ public class Werte<G> extends HashMap<Konto, Geld<G>> {
 		return null;
 	}
 	
-	public Geld<G> summe(Geld<G> g) {
-		Geld<G> summe = g.getNull();
+	public Geld<G> summe(Geld<G> summe) {
 		for(Konto k : this.keySet()) {
 			Geld<G> v =  get(k);
 			if (v != null) {

@@ -4,7 +4,7 @@ import beans.Geld;
 
 
 
-public class LongGeld implements beans.Geld<LongGeld> {
+public class LongGeld implements Geld<Long> {
 	public static final LongGeld NULL = new LongGeld(0L);
 	
 	private long betrag;
@@ -69,14 +69,20 @@ public class LongGeld implements beans.Geld<LongGeld> {
 
 
 	@Override
-	public Geld<LongGeld> subtract(Geld<LongGeld> b) {
+	public LongGeld subtract(Geld<Long> b) {
 		return new LongGeld(betrag - ((LongGeld)b).betrag);
 	}
 
 
 	@Override
-	public Geld<LongGeld> add(Geld<LongGeld> b) {
+	public LongGeld add(Geld<Long> b) {
 		return new LongGeld(betrag + ((LongGeld)b).betrag);
+	}
+
+
+	
+	public Long value() {
+		return betrag;
 	}
 
 }
