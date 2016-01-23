@@ -19,9 +19,9 @@ public class Abrechnung<G> {
 		}
 
 		private void gebuehrAbrechnen(Gebuehr<G> g) {
-			Werte<G> neu = g.getGebuehrWerte(this);
-			Werte<G> alt = db.getAktuelleWerte(this);
-			Werte<G> diff  = neu.differenz(alt);
+			Werte neu = g.getGebuehrWerte(this);
+			Werte alt = db.getAktuelleWerte(this);
+			Werte diff  = neu.differenz(alt);
 			db.insertBuchung(this, g, diff);
 		}
 }

@@ -1,14 +1,15 @@
 package gebuehren;
 
+import javax.money.MonetaryAmount;
 import beans.Abrechnung;
-import beans.Geld;
+
 
 public interface Repository<G> {
-	Werte<G> getAktuelleWerte(Abrechnung a);
+	Werte getAktuelleWerte(Abrechnung a);
 	
-	Geld<G> saldo(Abrechnung a);
+	MonetaryAmount saldo(Abrechnung a);
 	
-	public void insertBuchung(Abrechnung a,Gebuehr g,Werte<G> werte);
+	public void insertBuchung(Abrechnung a,Gebuehr g,Werte werte);
 	
 
 	

@@ -1,33 +1,33 @@
 package gebuehren;
 
 import java.util.HashMap;
-
+import javax.money.MonetaryAmount;
 import beans.Geld;
 import beans.Konto;
 
-public class Werte<G> extends HashMap<Konto, Geld<G>> {
+public class Werte extends HashMap<Konto, MonetaryAmount> {
 	
-	public Werte<G> differenz(Werte<G> b) {
-		Werte<G> dWerte = new Werte<>();
+	public Werte differenz(Werte b) {
+		Werte dWerte = new Werte();
 		for(Konto k : this.keySet()) {
-			Geld<G> d = differenz(k,b);
+			MonetaryAmount d = differenz(k,b);
 			if (d != null) {
 				dWerte.put(k,d);
 			}
 		}
 		for(Konto k : b.keySet()) {
 			if(!dWerte.containsKey(k)) {
-				Geld<G> d = b.get(k);
-				dWerte.put(k,d.invert());
+				MonetaryAmount d = b.get(k);
+				dWerte.put(k,d.negate());
 			}
 			
 		}
 		return dWerte;
 	}
 	
-	private Geld<G> differenz(Konto k, Werte<G> b) {
-		Geld<G> ga = get(k);
-		Geld<G> gb = b.get(k);
+	private MonetaryAmount differenz(Konto k, Werte b) {
+		MonetaryAmount ga = get(k);
+		MonetaryAmount gb = b.get(k);
 
 		if (ga != null) {
 			if (gb != null) {
@@ -36,14 +36,14 @@ public class Werte<G> extends HashMap<Konto, Geld<G>> {
 			return ga;
 		}
 		if (gb != null) {
-			return gb.invert();
+			return gb.negate();
 		}
 		return null;
 	}
 	
-	public Geld<G> summe(Geld<G> summe) {
+	public MonetaryAmount summe(MonetaryAmount summe) {
 		for(Konto k : this.keySet()) {
-			Geld<G> v =  get(k);
+			MonetaryAmount v =  get(k);
 			if (v != null) {
 				summe = summe.add(v);
 			}

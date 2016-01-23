@@ -5,6 +5,6 @@ import beans.Abrechnung;
 public interface Gebuehr<G> {
 
 	
-	Werte<G> getGebuehrWerte(Abrechnung a);
+	Werte getGebuehrWerte(Abrechnung a);
 	
 }
