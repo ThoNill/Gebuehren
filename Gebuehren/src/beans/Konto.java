@@ -1,6 +1,6 @@
 package beans;
 
 public interface Konto {
-	String getNummer();
+	int getNummer();
 	String getName();
 }
