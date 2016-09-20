@@ -29,7 +29,7 @@ public class WerteTest {
 		
 		MonetaryAmount summe = werte.summe(createAmount(0L));
 		
-		assertEquals(summe.getNumber().longValue(),3L+4L+5L);
+		assertEquals(3L+4L+5L,summe.getNumber().longValue());
 		
 	}
 	

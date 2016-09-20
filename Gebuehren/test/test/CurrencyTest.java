@@ -2,7 +2,6 @@ package test;
 
 import java.util.Collection;
 import java.util.Locale;
-
 import javax.money.CurrencyUnit;
 import javax.money.Monetary;
 import javax.money.MonetaryAmount;
@@ -11,78 +10,62 @@ import javax.money.MonetaryAmountFactoryQueryBuilder;
 import javax.money.MonetaryRounding;
 import javax.money.format.MonetaryAmountFormat;
 import javax.money.format.MonetaryFormats;
-
+import org.apache.log4j.Logger;
 import org.javamoney.moneta.Money;
 import org.junit.Ignore;
 import org.junit.Test;
 
+
 public class CurrencyTest {
+    public static final Logger LOG = Logger.getLogger(CurrencyTest.class
+            .getSimpleName());
 
-	@Test
-	public void test() {
-		MonetaryAmountFactory<?> factory = Monetary
-				.getAmountFactory(MonetaryAmountFactoryQueryBuilder.of().setFixedScale(true)
-						.setPrecision(10).setMaxScale(2).build());
-		System.out.println(factory.getAmountType().getName());
-	}
+    @Test
+    public void test() {
+        MonetaryAmountFactory<?> factory = Monetary
+                .getAmountFactory(MonetaryAmountFactoryQueryBuilder.of()
+                        .setFixedScale(true).setPrecision(10).setMaxScale(2)
+                        .build());
+        LOG.info(factory.getAmountType().getName());
+    }
 
-	@Ignore
-	@Test
-	public void test1() {
-		MonetaryAmountFactory<?> fast = Monetary
-				.getAmountFactory(org.javamoney.moneta.FastMoney.class);
+    @Ignore
+    @Test
+    public void testEUR() {
 
-		Monetary.getDefaultRounding();
+        testCurrency("EUR");
+    }
 
-		CurrencyUnit euro = Monetary.getCurrency("EUR");
+    @Ignore
+    @Test
+    public void testCHF() {
 
-		MonetaryAmount a1 = Money.of(123.45, euro);
-		System.out.println(a1.getContext().getProviderName());
+        testCurrency("CHF");
+    }
 
-		MonetaryRounding r = Monetary.getRounding(euro);
+    public void testCurrency(String currency) {
+        CurrencyUnit euro = Monetary.getCurrency(currency);
 
-		System.out.println(euro.getDefaultFractionDigits());
+        MonetaryAmount a1 = Money.of(123.45, euro);
+        LOG.info(a1.getContext().getProviderName());
 
-		Collection<MonetaryAmountFactory<?>> fs = Monetary.getAmountFactories();
-		for (MonetaryAmountFactory<?> mf : fs) {
-			System.out.println(mf.getAmountType().getName());
-			MonetaryAmount a = r.apply(mf.setCurrency("EUR")
-					.setNumber(10334.315).create());
+        MonetaryRounding r = Monetary.getRounding(euro);
 
-			System.out.println(a.toString());
-			System.out.println(a.getNumber().getScale());
+        LOG.info(euro.getDefaultFractionDigits());
 
-			MonetaryAmountFormat germanFormat = MonetaryFormats
-					.getAmountFormat(Locale.GERMANY);
-			System.out.println(germanFormat.format(a));
-		}
-	}
+        Collection<MonetaryAmountFactory<?>> fs = Monetary.getAmountFactories();
+        for (MonetaryAmountFactory<?> mf : fs) {
+            LOG.info(mf.getAmountType().getName());
+            MonetaryAmount a = r.apply(mf.setCurrency(currency)
+                    .setNumber(10334.315).create());
 
-	@Ignore
-	@Test
-	public void test12() {
-		CurrencyUnit euro = Monetary.getCurrency("CHF");
+            LOG.info(a.toString());
+            LOG.info(a.getNumber().getScale());
 
-		MonetaryAmount a1 = Money.of(123.45, euro);
-		System.out.println(a1.getContext().getProviderName());
-
-		MonetaryRounding r = Monetary.getRounding(euro);
-
-		System.out.println(euro.getDefaultFractionDigits());
-
-		Collection<MonetaryAmountFactory<?>> fs = Monetary.getAmountFactories();
-		for (MonetaryAmountFactory<?> mf : fs) {
-			System.out.println(mf.getAmountType().getName());
-			MonetaryAmount a = r.apply(mf.setCurrency("CHF")
-					.setNumber(10334.315).create());
-
-			System.out.println(a.toString());
-			System.out.println(a.getNumber().getScale());
-
-			MonetaryAmountFormat germanFormat = MonetaryFormats
-					.getAmountFormat(Locale.GERMANY);
-			System.out.println(germanFormat.format(a));
-		}
-	}
+            MonetaryAmountFormat germanFormat = MonetaryFormats
+                    .getAmountFormat(Locale.GERMANY);
+            LOG.info(germanFormat.format(a));
+        }
+    }
 
 }

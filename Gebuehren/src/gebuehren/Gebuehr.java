@@ -2,9 +2,9 @@ package gebuehren;
 
 import beans.Abrechnung;
 
-public interface Gebuehr<G> {
+@FunctionalInterface
+public interface Gebuehr {
 
-	
-	Werte getGebuehrWerte(Abrechnung a);
-	
+    Werte getGebuehrWerte(Abrechnung a);
+
 }
