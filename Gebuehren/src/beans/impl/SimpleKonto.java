@@ -3,8 +3,8 @@ package beans.impl;
 import beans.Konto;
 
 public class SimpleKonto implements Konto {
-    int nummer;
-    String name;
+    private int nummer;
+    private String name;
 
     public SimpleKonto(int i, String name) {
         super();
