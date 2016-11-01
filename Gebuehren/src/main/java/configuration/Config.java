@@ -15,6 +15,7 @@ import org.apache.commons.configuration.SystemConfiguration;
 import org.apache.commons.configuration.tree.UnionCombiner;
 import org.apache.log4j.Logger;
 
+
 public class Config extends CombinedConfiguration {
     public static final Logger LOG = Logger.getLogger(Config.class
             .getSimpleName());
