@@ -55,6 +55,14 @@ public class Geld {
 
     public static MonetaryAmount percentAmount(long percent, double l) {
         return round.apply(factory.setCurrency(euro.getCurrencyCode())
-                .setNumber((((double) percent) / 100) * l).create());
+                .setNumber((((double) percent) / 100.0) * l).create());
+    }
+    
+    public static MonetaryAmount percentAmount(MonetaryAmount g,double percent) {
+        return round.apply(g.multiply(percent));
+    }
+    
+    public static boolean absolutGrößer(MonetaryAmount a,MonetaryAmount b) {
+        return a.abs().isGreaterThan(b.abs());
     }
 }

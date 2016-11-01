@@ -2,16 +2,13 @@ package test;
 
 import static org.junit.Assert.*;
 
-
-
 import javax.money.MonetaryAmount;
-
-import gebuehren.Werte;
 
 import org.junit.Test;
 
 import static beans.Geld.*;
 import beans.Konto;
+import beans.Werte;
 import beans.impl.SimpleKonto;
 
 public class WerteTest {

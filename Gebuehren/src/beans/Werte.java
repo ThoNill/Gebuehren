@@ -1,10 +1,8 @@
-package gebuehren;
+package beans;
 
 import java.util.HashMap;
 
 import javax.money.MonetaryAmount;
-
-import beans.Konto;
 
 public class Werte extends HashMap<Konto, MonetaryAmount> {
 
@@ -21,26 +19,10 @@ public class Werte extends HashMap<Konto, MonetaryAmount> {
                 MonetaryAmount d = b.get(k);
                 dWerte.put(k, d.negate());
             }
-
         }
         return dWerte;
     }
 
-    private MonetaryAmount differenz(Konto k, Werte b) {
-        MonetaryAmount ga = get(k);
-        MonetaryAmount gb = b.get(k);
-
-        if (ga != null) {
-            if (gb != null) {
-                return ga.subtract(gb);
-            }
-            return ga;
-        }
-        if (gb != null) {
-            return gb.negate();
-        }
-        return null;
-    }
 
     public MonetaryAmount summe(MonetaryAmount startWert) {
         MonetaryAmount summe = startWert;
@@ -52,5 +34,24 @@ public class Werte extends HashMap<Konto, MonetaryAmount> {
         }
         return summe;
     }
-
+    
+    public MonetaryAmount summe() {
+        return summe(Geld.createAmount(0));
+    }
+    
+    private MonetaryAmount differenz(Konto k, Werte b) {
+        MonetaryAmount ga = get(k);
+        MonetaryAmount gb = b.get(k);
+        
+        if (ga != null) {
+            if (gb != null) {
+                return ga.subtract(gb);
+            }
+            return ga;
+        }
+        if (gb != null) {
+            return gb.negate();
+        }
+        return null;
+    }
 }
