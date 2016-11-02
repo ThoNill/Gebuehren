@@ -18,7 +18,7 @@ public class TestRepository implements ProzentualRepository, FixeGebührRepositor
     private MonetaryAmount betrag;
     private MonetaryAmount fixeGebühr;
 
-    TestRepository() {
+    public TestRepository() {
         super();
     }
 
@@ -68,6 +68,10 @@ public class TestRepository implements ProzentualRepository, FixeGebührRepositor
     public void setSaldo(long cent) {
         this.saldo = Geld.createAmount(cent/100.0);
     }
+    
+    public void setSaldo(MonetaryAmount betrag) {
+        this.saldo = betrag;
+    }
 
     public void setAktuelleWerte(Werte aktuelleWerte) {
         this.aktuelleWerte = aktuelleWerte;
@@ -76,9 +80,17 @@ public class TestRepository implements ProzentualRepository, FixeGebührRepositor
     public void setBetrag(long cent) {
         this.betrag = Geld.createAmount(cent/100.0);
     }
+    
+    public void setBetrag(MonetaryAmount betrag) {
+        this.betrag = betrag;
+    }
 
     public void setFixeGebühr(long cent) {
         this.fixeGebühr = Geld.createAmount(cent/100.0);
+    }
+    
+    public void setFixeGebühr(MonetaryAmount betrag) {
+        this.fixeGebühr = betrag;
     }
 
  

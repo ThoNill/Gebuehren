@@ -6,7 +6,7 @@ public class TestKonto implements Konto {
     private int nummer;
     private String name;
 
-    TestKonto(int nummer, String name) {
+    public TestKonto(int nummer, String name) {
         super();
         this.nummer = nummer;
         this.name = name;
