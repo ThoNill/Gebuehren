@@ -6,14 +6,14 @@ import beans.BuchungsartUndText;
 import beans.Werte;
 
 public class StatusWechsel extends BuchungsartUndText {
-    private Enum status;
+    private Enum<?> status;
  
-    public StatusWechsel(Enum art, String buchungsText,Enum status) {
+    public StatusWechsel(Enum<?> art, String buchungsText,Enum status) {
         super(art, buchungsText);
         this.status = status;
     }
 
-    public StatusWechsel(Enum art,Enum status) {
+    public StatusWechsel(Enum<?> art,Enum<?> status) {
         super(art, null);
     }
 
@@ -66,7 +66,7 @@ public class StatusWechsel extends BuchungsartUndText {
         return true;
     }
 
-    public Enum getStatus() {
+    public Enum<?> getStatus() {
         return status;
     }
 

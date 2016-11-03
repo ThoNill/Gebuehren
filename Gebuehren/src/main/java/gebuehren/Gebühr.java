@@ -7,10 +7,10 @@ import beans.Werte;
 
 public abstract class Gebühr<REPO extends Repository> implements WerteQuelle {
     private REPO repository;
-    private Enum art;
+    private Enum<?> art;
     private String buchungsText;
     
-    public Gebühr(REPO repository,Enum art,String buchungsText) {
+    public Gebühr(REPO repository,Enum<?> art,String buchungsText) {
         super();
         this.repository = repository;
         this.art = art;
@@ -31,7 +31,7 @@ public abstract class Gebühr<REPO extends Repository> implements WerteQuelle {
     }
 
     @Override
-    public Enum getArt() {
+    public Enum<?> getArt() {
         return art;
     }
 

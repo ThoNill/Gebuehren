@@ -13,7 +13,7 @@ public class StatusWechselGruppe extends HashSet<StatusWechsel>{
        return this;
    }
    
-   StatusWechsel getWechsel(Enum status) {
+   StatusWechsel getWechsel(Enum<?> status) {
        if (status == null) {
            throw new IllegalArgumentException("Status darf nicht Null sein");
        }

@@ -3,7 +3,6 @@ package überzahlungen;
 import javax.money.MonetaryAmount;
 
 import abrechnung.Abrechnung;
-import abrechnung.Repository;
 import abrechnung.WerteQuelle;
 import beans.Geld;
 import beans.Konto;
@@ -12,8 +11,8 @@ import beans.Werte;
 public class ÜberzahlungZins implements WerteQuelle{
     private ÜberzahlugsRepository repository;
     private Konto ÜberzahlungsZinsKonto;
-    private Enum überzahlungsArt;
-    private Enum art;
+    private Enum<?> überzahlungsArt;
+    private Enum<?> art;
     
     
     public ÜberzahlungZins(ÜberzahlugsRepository repository,Konto ÜberzahlungsZinsKonto,Enum überzahlungsArt,Enum art) {
@@ -39,7 +38,7 @@ public class ÜberzahlungZins implements WerteQuelle{
     }
 
     @Override
-    public Enum getArt() {
+    public Enum<?> getArt() {
         return art;
     }
 

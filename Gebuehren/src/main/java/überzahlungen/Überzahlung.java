@@ -11,7 +11,7 @@ import beans.Werte;
 public class Überzahlung implements WerteQuelle{
     private Repository repository;
     private Konto überzahlungsKonto;
-    private Enum art;
+    private Enum<?> art;
     
     public Überzahlung(Enum art,Repository repository,Konto überzahlungsKonto) {
         this.repository = repository;
@@ -34,7 +34,7 @@ public class Überzahlung implements WerteQuelle{
     }
 
     @Override
-    public Enum getArt() {
+    public Enum<?> getArt() {
         return art;
     }
 

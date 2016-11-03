@@ -2,11 +2,11 @@ package beans;
 
 public class BuchungsartUndText {
 
-    private Enum art;
+    private Enum<?> art;
 
     private String buchungsText;
 
-    public BuchungsartUndText(Enum art, String buchungsText) {
+    public BuchungsartUndText(Enum<?> art, String buchungsText) {
         super();
         this.art = art;
         this.buchungsText = buchungsText;
@@ -16,7 +16,7 @@ public class BuchungsartUndText {
         super();
     }
 
-    public Enum getArt() {
+    public Enum<?> getArt() {
         return art;
     }
 

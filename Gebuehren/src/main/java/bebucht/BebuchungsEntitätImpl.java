@@ -3,11 +3,11 @@ package bebucht;
 import javax.money.MonetaryAmount;
 
 public abstract class BebuchungsEntitätImpl implements BebuchteEntität{
-    protected  Enum status;
+    protected  Enum<?> status;
 
 
     @Override
-    public void setStatus(Enum nachStatus, BuchungsRepository repository,MonetaryAmount betrag) {
+    public void setStatus(Enum<?> nachStatus, BuchungsRepository repository,MonetaryAmount betrag) {
         StatusWechselGruppe möglicheStatusWechsel = getMöglicheStatusWechsel();
         buchen(repository, betrag.negate(), möglicheStatusWechsel);
         status = nachStatus;
@@ -24,7 +24,8 @@ public abstract class BebuchungsEntitätImpl implements BebuchteEntität{
     }
 
 
-    public Enum getStatus() {
+    @Override
+    public Enum<?> getStatus() {
         return status;
     }
   

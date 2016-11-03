@@ -37,7 +37,7 @@ public class BebuchtTestEntität extends BebuchungsEntitätImpl {
     }
 
     @Override
-    public Enum getReferenzArt() {
+    public Enum<?> getReferenzArt() {
         return art;
     }
 

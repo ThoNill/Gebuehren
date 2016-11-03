@@ -55,7 +55,7 @@ public class Geld {
 
     public static MonetaryAmount percentAmount(long percent, double l) {
         return round.apply(factory.setCurrency(euro.getCurrencyCode())
-                .setNumber((((double) percent) / 100.0) * l).create());
+                .setNumber(((percent) / 100.0) * l).create());
     }
     
     public static MonetaryAmount percentAmount(MonetaryAmount g,double percent) {
