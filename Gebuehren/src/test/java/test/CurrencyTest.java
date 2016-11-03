@@ -1,6 +1,7 @@
 package test;
 
 import java.util.Collection;
+
 import java.util.Locale;
 import javax.money.CurrencyUnit;
 import javax.money.Monetary;

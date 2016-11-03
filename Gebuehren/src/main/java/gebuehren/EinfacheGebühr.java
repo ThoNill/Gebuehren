@@ -12,7 +12,7 @@ public abstract class EinfacheGebühr<REPO extends BetragsRepository> extends Geb
     protected Konto gebührenKonto;
     protected Konto betragsKonto;
 
-    public EinfacheGebühr(REPO repository, int art, String buchungsText,Konto betragsKonto,Konto gebührenKonto) {
+    public EinfacheGebühr(REPO repository, Enum art, String buchungsText,Konto betragsKonto,Konto gebührenKonto) {
         super(repository, art, buchungsText);
         this.betragsKonto = betragsKonto;
         this.gebührenKonto = gebührenKonto;

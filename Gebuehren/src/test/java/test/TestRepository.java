@@ -3,7 +3,7 @@ package test;
 import javax.money.MonetaryAmount;
 
 import abrechnung.Abrechnung;
-import beans.BuchungsAuftrag;
+import beans.BuchungsartUndText;
 import beans.Geld;
 import beans.Konto;
 import beans.Werte;
@@ -28,7 +28,7 @@ public class TestRepository implements ProzentualRepository, FixeGebührRepositor
     }
 
     @Override
-    public Werte getAktuelleWerte(int art, Abrechnung a) {
+    public Werte getAktuelleWerte(Enum art, Abrechnung a) {
         return aktuelleWerte;
     }
 
@@ -38,7 +38,7 @@ public class TestRepository implements ProzentualRepository, FixeGebührRepositor
     }
 
     @Override
-    public void insertBuchung(Abrechnung abrechnung, BuchungsAuftrag auftrag) {
+    public void insertBuchung(Abrechnung abrechnung, BuchungsartUndText auftrag) {
     }
 
     @Override

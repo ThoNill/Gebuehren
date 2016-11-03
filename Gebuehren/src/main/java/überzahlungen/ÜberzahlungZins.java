@@ -12,12 +12,15 @@ import beans.Werte;
 public class ÜberzahlungZins implements WerteQuelle{
     private ÜberzahlugsRepository repository;
     private Konto ÜberzahlungsZinsKonto;
-    private int überzahlungsArt;
+    private Enum überzahlungsArt;
+    private Enum art;
     
-    public ÜberzahlungZins(ÜberzahlugsRepository repository,Konto ÜberzahlungsZinsKonto,int überzahlungsArt) {
+    
+    public ÜberzahlungZins(ÜberzahlugsRepository repository,Konto ÜberzahlungsZinsKonto,Enum überzahlungsArt,Enum art) {
         this.repository = repository;
         this.ÜberzahlungsZinsKonto = ÜberzahlungsZinsKonto;
         this.überzahlungsArt = überzahlungsArt;
+        this.art = art;
     }
 
     @Override
@@ -36,8 +39,8 @@ public class ÜberzahlungZins implements WerteQuelle{
     }
 
     @Override
-    public int getArt() {
-        return 0;
+    public Enum getArt() {
+        return art;
     }
 
     @Override

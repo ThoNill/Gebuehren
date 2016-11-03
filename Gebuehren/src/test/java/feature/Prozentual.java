@@ -21,6 +21,10 @@ import cucumber.api.PendingException;
 
 
 public class Prozentual {
+    public enum Arten {
+        GEBÜHR
+    }
+    
     Konto gebührKonto = new TestKonto(2, "Gebühr");
     Konto betragKonto = new TestKonto(3, "Betrag");
     TestRepository repo = new TestRepository();
@@ -44,7 +48,7 @@ public class Prozentual {
 
     @Dann("^ist die Gebühr (\\d+\\,{0,1}\\d+)$")
     public void the_result_should_be(double dergebnis) throws Throwable {
-        ProzentualeGebühr gebühr = new ProzentualeGebühr(repo,  10,
+        ProzentualeGebühr gebühr = new ProzentualeGebühr(repo, Arten.GEBÜHR,
                 "Gebühr",betragKonto,gebührKonto);
         Werte w = gebühr.getWerte(abrechnung);
         MonetaryAmount berechnet = w.get(gebührKonto);

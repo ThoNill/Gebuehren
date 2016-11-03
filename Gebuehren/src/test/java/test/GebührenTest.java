@@ -2,7 +2,6 @@ package test;
 
 import static org.junit.Assert.*;
 
-
 import java.util.Arrays;
 import java.util.Collection;
 
@@ -12,6 +11,7 @@ import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameter;
 import org.junit.runners.Parameterized.Parameters;
 
+import gebuehren.Gebühr;
 import gebuehren.ProzentualRepository;
 import gebuehren.ProzentualeGebühr;
 import abrechnung.Abrechnung;
@@ -22,6 +22,9 @@ import beans.Werte;
 
 @RunWith(org.junit.runners.Parameterized.class)
 public class GebührenTest {
+    public enum Arten {
+        GEBÜHR
+    }
 
     Konto gebührKonto = new TestKonto(2, "Gebühr");
     Konto betragKonto = new TestKonto(3, "Betrag");
@@ -33,7 +36,7 @@ public class GebührenTest {
     }
 
     public void prozentualeGebühr(long betrag, long erwarteteGebühr, long mwst,double prozentsatz) {
-        ProzentualeGebühr gebühr = new ProzentualeGebühr(repo,  10,
+        ProzentualeGebühr gebühr = new ProzentualeGebühr(repo, Arten.GEBÜHR,
                 "Gebühr",betragKonto,gebührKonto);
         repo.setBetrag(betrag);
         repo.setProzentsatz(prozentsatz);

@@ -3,27 +3,13 @@ package beans;
 
 
 
-public class BuchungsAuftrag {
-    private int art;
-    private String buchungsText;
+public class BuchungsAuftrag extends BuchungsartUndText {
     private Werte werte;
     
-    public BuchungsAuftrag(int art,String buchungsText,
+    public BuchungsAuftrag(Enum art,String buchungsText,
             Werte werte) {
-        super();
-        this.art = art;
-        this.buchungsText = buchungsText;
+        super(art,buchungsText);
         this.werte = werte;
-    }
-
-    public int getArt() {
-        return art;
-    }
-
-  
-
-    public String getBuchungsText() {
-        return buchungsText;
     }
 
     public Werte getWerte() {

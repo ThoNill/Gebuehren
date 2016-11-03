@@ -1,14 +1,15 @@
 package abrechnung;
 
 import javax.money.MonetaryAmount;
-import beans.BuchungsAuftrag;
+
+import beans.BuchungsartUndText;
 import beans.Konto;
 import beans.Werte;
 
 public interface Repository {
-    Werte getAktuelleWerte(int art,Abrechnung a);
+    Werte getAktuelleWerte(Enum art,Abrechnung a);
     MonetaryAmount saldo(Abrechnung a);
-    public void insertBuchung(Abrechnung abrechnung,BuchungsAuftrag auftrag);
+    public void insertBuchung(Abrechnung abrechnung,BuchungsartUndText auftrag);
     double getMwstSatz(Abrechnung abrechnung);
     Konto getMwstKonto(Abrechnung abrechnung);
 

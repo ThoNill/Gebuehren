@@ -9,7 +9,7 @@ import beans.Konto;
 public class ProzentualeGebühr extends EinfacheGebühr<ProzentualRepository> {
     
     public ProzentualeGebühr(ProzentualRepository repository,
-            int art, String buchungsText, Konto betragsKonto,Konto gebührenKonto) {
+            Enum art, String buchungsText, Konto betragsKonto,Konto gebührenKonto) {
         super(repository, art, buchungsText,betragsKonto,gebührenKonto);
        
     }
