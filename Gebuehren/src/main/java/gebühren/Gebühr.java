@@ -1,4 +1,4 @@
-package gebuehren;
+package gebühren;
 
 import abrechnung.Abrechnung;
 import abrechnung.Repository;

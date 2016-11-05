@@ -11,9 +11,10 @@ import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameter;
 import org.junit.runners.Parameterized.Parameters;
 
-import gebuehren.Gebühr;
-import gebuehren.ProzentualRepository;
-import gebuehren.ProzentualeGebühr;
+import repositories.TestProzentualRepository;
+import gebühren.Gebühr;
+import gebühren.ProzentualRepository;
+import gebühren.ProzentualeGebühr;
 import abrechnung.Abrechnung;
 import abrechnung.Repository;
 import beans.Geld;
@@ -28,7 +29,7 @@ public class GebührenTest {
 
     Konto gebührKonto = new TestKonto(2, "Gebühr");
     Konto betragKonto = new TestKonto(3, "Betrag");
-    TestRepository repo = new TestRepository();
+    TestProzentualRepository repo = new TestProzentualRepository();
     Abrechnung abrechnung;
 
     public GebührenTest() {

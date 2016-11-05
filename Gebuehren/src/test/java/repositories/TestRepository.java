@@ -1,30 +1,26 @@
-package test;
+package repositories;
 
 import javax.money.MonetaryAmount;
 
+import test.TestKonto;
 import abrechnung.Abrechnung;
+import abrechnung.Repository;
 import beans.BuchungsartUndText;
 import beans.Geld;
 import beans.Konto;
 import beans.Werte;
-import gebuehren.FixeGebührRepository;
-import gebuehren.ProzentualRepository;
+import gebühren.FixeGebührRepository;
+import gebühren.ProzentualRepository;
 
-public class TestRepository implements ProzentualRepository, FixeGebührRepository{
+public class TestRepository implements Repository{
+
     private Konto mwst = new TestKonto(1,"Mwst");
-    private double prozentsatz;
     private MonetaryAmount saldo;
     private Werte aktuelleWerte;
-    private MonetaryAmount betrag;
-    private MonetaryAmount fixeGebühr;
 
     public TestRepository() {
         super();
-    }
-
-    @Override
-    public MonetaryAmount getBetrag() {
-        return betrag;
+        aktuelleWerte = new Werte();
     }
 
     @Override
@@ -51,24 +47,10 @@ public class TestRepository implements ProzentualRepository, FixeGebührRepositor
         return mwst;
     }
 
-    @Override
-    public double getGebührenProzentsatz() {
-        return prozentsatz;
-    }
-
-    @Override
-    public MonetaryAmount getGebühr() {
-        return fixeGebühr;
-    }
-
-    public void setProzentsatz(double prozentsatz) {
-        this.prozentsatz = prozentsatz;
-    }
-
     public void setSaldo(long cent) {
         this.saldo = Geld.createAmount(cent/100.0);
     }
-    
+
     public void setSaldo(MonetaryAmount betrag) {
         this.saldo = betrag;
     }
@@ -77,21 +59,4 @@ public class TestRepository implements ProzentualRepository, FixeGebührRepositor
         this.aktuelleWerte = aktuelleWerte;
     }
 
-    public void setBetrag(long cent) {
-        this.betrag = Geld.createAmount(cent/100.0);
-    }
-    
-    public void setBetrag(MonetaryAmount betrag) {
-        this.betrag = betrag;
-    }
-
-    public void setFixeGebühr(long cent) {
-        this.fixeGebühr = Geld.createAmount(cent/100.0);
-    }
-    
-    public void setFixeGebühr(MonetaryAmount betrag) {
-        this.fixeGebühr = betrag;
-    }
-
- 
 }

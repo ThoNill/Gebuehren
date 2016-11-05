@@ -9,15 +9,15 @@ import org.junit.Test;
 import static beans.Geld.*;
 import beans.Konto;
 import beans.Werte;
-import beans.impl.SimpleKonto;
+import beans.impl.AutoMwstKonto;
 
 public class WerteTest {
 
 	@Test
 	public void test1() {
-		Konto k1 = new SimpleKonto(1001,"Gebuehr");
-		Konto k2 = new SimpleKonto(1002,"Mwst");
-		Konto k3 = new SimpleKonto(1003,"Pauschale");
+		Konto k1 = new TestKonto(1001,"Gebuehr");
+		Konto k2 = new TestKonto(1002,"Mwst");
+		Konto k3 = new TestKonto(1003,"Pauschale");
 		
 		Werte werte = new Werte();
 		werte.put(k1,createAmount(3));
@@ -32,9 +32,9 @@ public class WerteTest {
 	
 	@Test
 	public void test2() {
-		Konto k1 = new SimpleKonto(1001,"Gebuehr");
-		Konto k2 = new SimpleKonto(1002,"Mwst");
-		Konto k3 = new SimpleKonto(1003,"Pauschale");
+		Konto k1 = new TestKonto(1001,"Gebuehr");
+		Konto k2 = new TestKonto(1002,"Mwst");
+		Konto k3 = new TestKonto(1003,"Pauschale");
 		
 		Werte werte1 = new Werte();
 		werte1.put(k1,createAmount(3));
@@ -56,6 +56,32 @@ public class WerteTest {
 		}
 		
 	}	
+	
+	   @Test
+	    public void test3() {
+	        Konto k1 = new TestKonto(1001,"Gebuehr");
+	        Konto k2 = new TestKonto(1002,"Mwst");
+	        AutoMwstKonto ak = new AutoMwstKonto(k1, k2, 0.19);
+	        
+	        Werte werte1 = new Werte();
+	        werte1.put(k1,createAmount(100));
+	        werte1.put(k2,createAmount(19));
+	        
+	        Werte werte2 = new Werte();
+            werte2.put(ak,createAmount(100));
+      
+	       
+	        
+	        Werte werte3 = werte1.differenz(werte2);
+	        
+	        for(Konto k : werte3.keySet()) {
+	            MonetaryAmount v =  werte3.get(k);
+	            if (v != null) {
+	                assertEquals(v.getNumber().longValue(),0l);
+	            }
+	        }
+	        
+	    }   
 	
 	@Test
 	public void runden() {

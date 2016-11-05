@@ -1,23 +1,23 @@
-package gebuehren;
+package gebühren;
 
 import javax.money.MonetaryAmount;
 
 import abrechnung.Abrechnung;
 import beans.Konto;
+import beans.Werte;
 
 public class FixeGebühr extends EinfacheGebühr<FixeGebührRepository> {
+    protected Konto gebührenKonto;
+    
     public FixeGebühr(FixeGebührRepository repository, 
-            Enum<?> art, String buchungsText, Konto betragsKonto,Konto gebührenKonto) {
-        super(repository, art, buchungsText,betragsKonto,gebührenKonto);
-     
+            Enum<?> art, String buchungsText,Konto gebührenKonto) {
+        super(repository, art, buchungsText,gebührenKonto);
     }
 
- 
     @Override
     protected MonetaryAmount getGebühr(FixeGebührRepository repository,
-            Abrechnung abrechnung,MonetaryAmount betrag) {
-        return repository.getGebühr();
-   
+            Abrechnung abrechnung) {
+        return repository.getFixeGebühr();
     }
 
 }

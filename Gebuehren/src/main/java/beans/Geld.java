@@ -65,4 +65,8 @@ public class Geld {
     public static boolean absolutGrößer(MonetaryAmount a,MonetaryAmount b) {
         return a.abs().isGreaterThan(b.abs());
     }
+    
+    public static MonetaryAmount getNull() {
+        return createAmount(0);
+    }
 }

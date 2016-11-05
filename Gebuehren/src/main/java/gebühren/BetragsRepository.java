@@ -1,4 +1,4 @@
-package gebuehren;
+package gebühren;
 
 import javax.money.MonetaryAmount;
 

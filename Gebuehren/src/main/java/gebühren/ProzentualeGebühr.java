@@ -1,4 +1,4 @@
-package gebuehren;
+package gebühren;
 
 import javax.money.MonetaryAmount;
 
@@ -6,7 +6,7 @@ import abrechnung.Abrechnung;
 import beans.Geld;
 import beans.Konto;
 
-public class ProzentualeGebühr extends EinfacheGebühr<ProzentualRepository> {
+public class ProzentualeGebühr extends BetragsabhängigeGebühr<ProzentualRepository> {
     
     public ProzentualeGebühr(ProzentualRepository repository,
             Enum<?> art, String buchungsText, Konto betragsKonto,Konto gebührenKonto) {

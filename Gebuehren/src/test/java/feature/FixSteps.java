@@ -4,10 +4,12 @@ import javax.money.MonetaryAmount;
 
 import org.junit.Test;
 
+import repositories.TestFixeGebürRepository;
+import repositories.TestProzentualRepository;
 import test.TestKonto;
-import test.TestRepository;
 import static org.junit.Assert.*;
-import gebuehren.ProzentualeGebühr;
+import gebühren.FixeGebühr;
+import gebühren.ProzentualeGebühr;
 import abrechnung.Abrechnung;
 import beans.Geld;
 import beans.Konto;
@@ -20,36 +22,31 @@ import cucumber.api.java.de.Und;
 import cucumber.api.PendingException;
 
 
-public class Prozentual {
+public class FixSteps {
     public enum Arten {
         GEBÜHR
     }
     
     Konto gebührKonto = new TestKonto(2, "Gebühr");
-    Konto betragKonto = new TestKonto(3, "Betrag");
-    TestRepository repo = new TestRepository();
+    TestFixeGebürRepository repo = new TestFixeGebürRepository();
     Abrechnung abrechnung;
     
    
-    public Prozentual() {
+    public FixSteps() {
         super();
         abrechnung = new Abrechnung(repo);
+        System.out.println(getClass().getName());
     }
 
-    @Angenommen("^die prozentuale Gebühr ist (\\d+) %$")
-    public void i_have_a_calculator(double prozentsatz) throws Throwable {
-        repo.setProzentsatz(prozentsatz/100.0);
+    @Angenommen("^die fixe Gebühr ist (\\-{0,1}\\d+)$")
+    public void die_fixe_Gebühr_ist(double dergebnis) throws Throwable {
+        repo.setGebühr(Geld.createAmount(dergebnis));
     }
 
-    @Und("^der Betrag ist (\\d+\\,{0,1}\\d+)$")
-    public void i_add_and(long betrag) throws Throwable {
-        repo.setBetrag(Geld.createAmount(betrag));
-    }
-
-    @Dann("^ist die Gebühr (\\d+\\,{0,1}\\d+)$")
-    public void the_result_should_be(double dergebnis) throws Throwable {
-        ProzentualeGebühr gebühr = new ProzentualeGebühr(repo, Arten.GEBÜHR,
-                "Gebühr",betragKonto,gebührKonto);
+    @Dann("^ist die Gebühr eben (\\-{0,1}\\d+\\,{0,1}\\d*)$")
+    public void dann_ist_die_Gebühr_eben(double dergebnis) throws Throwable {
+        FixeGebühr gebühr = new FixeGebühr(repo, Arten.GEBÜHR,
+                "Gebühr",gebührKonto);
         Werte w = gebühr.getWerte(abrechnung);
         MonetaryAmount berechnet = w.get(gebührKonto);
         MonetaryAmount ergebnis = Geld.createAmount(dergebnis).negate();

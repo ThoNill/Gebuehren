@@ -1,4 +1,4 @@
-package gebuehren;
+package gebühren;
 
 
 public interface ProzentualRepository extends BetragsRepository{
