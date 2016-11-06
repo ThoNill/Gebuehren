@@ -1,6 +1,8 @@
 package beans;
 
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.money.MonetaryAmount;
 
@@ -8,16 +10,13 @@ public class Werte extends HashMap<Konto, MonetaryAmount> {
 
     public Werte differenz(Werte b) {
         Werte dWerte = new Werte();
-        for (Konto k : this.keySet()) {
+        Set<Konto> alle = new HashSet<>();
+        alle.addAll(this.keySet());
+        alle.addAll(b.keySet());
+        for (Konto k : alle) {
             MonetaryAmount d = differenz(k, b);
-            if (d != null) {
+            if (!d.isZero() ) {
                 dWerte.put(k, d);
-            }
-        }
-        for (Konto k : b.keySet()) {
-            if (!dWerte.containsKey(k)) {
-                MonetaryAmount d = b.get(k);
-                dWerte.put(k, d.negate());
             }
         }
         return dWerte;
@@ -27,9 +26,7 @@ public class Werte extends HashMap<Konto, MonetaryAmount> {
         MonetaryAmount summe = startWert;
         for (Konto k : this.keySet()) {
             MonetaryAmount v = get(k);
-            if (v != null) {
-                summe = summe.add(v);
-            }
+            summe = summe.add(v);
         }
         return summe;
     }
@@ -41,17 +38,7 @@ public class Werte extends HashMap<Konto, MonetaryAmount> {
     private MonetaryAmount differenz(Konto k, Werte b) {
         MonetaryAmount ga = get(k);
         MonetaryAmount gb = b.get(k);
-
-        if (ga != null) {
-            if (gb != null) {
-                return ga.subtract(gb);
-            }
-            return ga;
-        }
-        if (gb != null) {
-            return gb.negate();
-        }
-        return null;
+        return ga.subtract(gb);
     }
 
     public MonetaryAmount get(Konto konto) {
@@ -78,5 +65,25 @@ public class Werte extends HashMap<Konto, MonetaryAmount> {
     @Override
     public String toString() {
         return "Werte [entrySet=" + entrySet() + "]";
+    }
+
+    public Werte add(Werte werte) {
+        Werte summe = new Werte();
+        Set<Konto> alle = new HashSet<>();
+        alle.addAll(this.keySet());
+        alle.addAll(werte.keySet());
+        for (Konto k : alle) {
+            MonetaryAmount d = summe(k, werte);
+            if (!d.isZero() ) {
+                summe.put(k, d);
+            }
+        }
+        return summe;
+    }
+    
+    private MonetaryAmount summe(Konto k, Werte b) {
+        MonetaryAmount ga = get(k);
+        MonetaryAmount gb = b.get(k);
+        return ga.add(gb);
     }
 }

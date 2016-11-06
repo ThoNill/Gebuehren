@@ -18,6 +18,7 @@ import cucumber.api.java.de.Dann;
 import cucumber.api.java.de.Wenn;
 import cucumber.api.java.de.Und;
 import cucumber.api.PendingException;
+import entities.TestAbrechnung;
 
 
 public class ProzentualSteps {
@@ -33,7 +34,7 @@ public class ProzentualSteps {
    
     public ProzentualSteps() {
         super();
-        abrechnung = new Abrechnung(repo);
+        abrechnung = new TestAbrechnung(1,repo);
         System.out.println(getClass().getName());
     }
 

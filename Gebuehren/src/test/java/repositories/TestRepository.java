@@ -5,6 +5,7 @@ import javax.money.MonetaryAmount;
 import test.TestKonto;
 import abrechnung.Abrechnung;
 import abrechnung.Repository;
+import beans.BuchungsAuftrag;
 import beans.BuchungsartUndText;
 import beans.Geld;
 import beans.Konto;
@@ -34,7 +35,7 @@ public class TestRepository implements Repository{
     }
 
     @Override
-    public void insertBuchung(Abrechnung abrechnung, BuchungsartUndText auftrag) {
+    public void insertBuchung(Abrechnung abrechnung, BuchungsAuftrag auftrag) {
     }
 
     @Override

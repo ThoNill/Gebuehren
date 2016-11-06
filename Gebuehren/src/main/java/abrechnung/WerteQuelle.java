@@ -7,4 +7,8 @@ public interface WerteQuelle {
      Enum<?> getArt();
      String getBuchungsText();
      
+     default Abrechnung getRelevanteAbrechnung(Abrechnung abrechnung) {
+         return abrechnung;
+     }
+     
 }

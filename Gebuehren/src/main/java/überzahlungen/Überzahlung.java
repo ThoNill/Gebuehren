@@ -11,36 +11,41 @@ import beans.Werte;
 public class Überzahlung implements WerteQuelle{
     private Repository repository;
     private Konto überzahlungsKonto;
-    private Enum<?> art;
+    private Enum<?> überzahlungsArt;
     
-    public Überzahlung(Enum art,Repository repository,Konto überzahlungsKonto) {
+    public Überzahlung(Repository repository,Enum überzahlungsArt,Konto überzahlungsKonto) {
         this.repository = repository;
         this.überzahlungsKonto = überzahlungsKonto;
-        this.art = art;
+        this.überzahlungsArt = überzahlungsArt;
     }
 
     @Override
     public Werte getWerte(Abrechnung abrechnung) {
-        MonetaryAmount saldo = repository.saldo(abrechnung);
-        Werte alteBuchung = repository.getAktuelleWerte(getArt(), abrechnung);
-        MonetaryAmount alteÜberzahlung = alteBuchung.summe();
-        MonetaryAmount reduziertesSaldo = saldo.subtract(alteÜberzahlung);
+        MonetaryAmount alteÜberzahlung = getAlteÜbezahlung(abrechnung);
+        MonetaryAmount aktuellesSaldo = repository.saldo(abrechnung);
+        MonetaryAmount reduziertesSaldo = aktuellesSaldo.subtract(alteÜberzahlung);
         Werte w = new Werte();
         if (reduziertesSaldo.isNegative()) {
-            w.put(überzahlungsKonto, reduziertesSaldo);
+            w.put(überzahlungsKonto, reduziertesSaldo.negate());
         }
-       
         return w;
+    }
+
+    protected MonetaryAmount getAlteÜbezahlung(Abrechnung abrechnung) {
+        Werte alteBuchung = repository.getAktuelleWerte(überzahlungsArt, abrechnung);
+        return alteBuchung.get(überzahlungsKonto);
     }
 
     @Override
     public Enum<?> getArt() {
-        return art;
+        return überzahlungsArt;
     }
 
     @Override
     public String getBuchungsText() {
         return "Überzahlungen";
     }
+    
+  
 
 }

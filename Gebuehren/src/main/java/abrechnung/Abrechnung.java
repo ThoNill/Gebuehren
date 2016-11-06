@@ -6,7 +6,7 @@ import java.util.List;
 import beans.BuchungsAuftrag;
 import beans.Werte;
 
-public class Abrechnung {
+public abstract class Abrechnung {
     private List<WerteQuelle> quellen = new ArrayList<>();
     private Repository repository;
 
@@ -14,7 +14,9 @@ public class Abrechnung {
         super();
         this.repository = db;
     }
-
+    
+    public abstract Abrechnung nächsteAbrechnung();
+    
     public void abrechnen() {
         for (WerteQuelle g : quellen) {
             abrechnen(g);
@@ -23,12 +25,17 @@ public class Abrechnung {
 
     private void abrechnen(WerteQuelle g) {
         Werte neu = g.getWerte(this);
-        Werte alt = repository.getAktuelleWerte(g.getArt(),this);
+        Abrechnung relevanteAbrechnung = g.getRelevanteAbrechnung(this);
+        Werte alt = repository.getAktuelleWerte(g.getArt(),relevanteAbrechnung);
         Werte diff = neu.differenz(alt);
-        repository.insertBuchung( this,new BuchungsAuftrag(g.getArt(),g.getBuchungsText(),diff));
+        repository.insertBuchung(relevanteAbrechnung,new BuchungsAuftrag(g.getArt(),g.getBuchungsText(),diff));
     }
     
     public boolean add(WerteQuelle e) {
         return quellen.add(e);
+    }
+
+    public Repository getRepository() {
+        return repository;
     }
 }

@@ -11,6 +11,7 @@ import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameter;
 import org.junit.runners.Parameterized.Parameters;
 
+import entities.TestAbrechnung;
 import repositories.TestProzentualRepository;
 import gebühren.Gebühr;
 import gebühren.ProzentualRepository;
@@ -33,7 +34,7 @@ public class GebührenTest {
     Abrechnung abrechnung;
 
     public GebührenTest() {
-        abrechnung = new Abrechnung(repo);
+        abrechnung = new TestAbrechnung(1,repo);
     }
 
     public void prozentualeGebühr(long betrag, long erwarteteGebühr, long mwst,double prozentsatz) {

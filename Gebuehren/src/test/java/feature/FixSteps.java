@@ -20,6 +20,7 @@ import cucumber.api.java.de.Dann;
 import cucumber.api.java.de.Wenn;
 import cucumber.api.java.de.Und;
 import cucumber.api.PendingException;
+import entities.TestAbrechnung;
 
 
 public class FixSteps {
@@ -34,7 +35,7 @@ public class FixSteps {
    
     public FixSteps() {
         super();
-        abrechnung = new Abrechnung(repo);
+        abrechnung = new TestAbrechnung(1,repo);
         System.out.println(getClass().getName());
     }
 

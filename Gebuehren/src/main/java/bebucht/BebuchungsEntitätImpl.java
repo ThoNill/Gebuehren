@@ -19,7 +19,7 @@ public abstract class BebuchungsEntitätImpl implements BebuchteEntität{
             StatusWechselGruppe möglicheStatusWechsel) {
         StatusWechsel von = möglicheStatusWechsel.getWechsel(status);
         if (von != null) {
-            repository.insertBuchung(von.erzeugeBuchungsAuftrag(repository, this, betrag));
+            repository.insertBuchung(von.erzeugeBuchungsAuftragMitPrüfung(repository, this, betrag));
         }
     }
 
