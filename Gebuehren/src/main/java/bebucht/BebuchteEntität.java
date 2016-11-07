@@ -3,8 +3,8 @@ package bebucht;
 import javax.money.MonetaryAmount;
 
 public interface BebuchteEntität {
-        long getReferenz();
-        Enum<?> getReferenzArt();
+        long getId();
+        Enum<?> getArt();
         Enum<?>  getStatus();
         StatusWechselGruppe getMöglicheStatusWechsel();
         MonetaryAmount getBetrag();
@@ -12,5 +12,6 @@ public interface BebuchteEntität {
             setStatus(nachStatus, repository,getBetrag());
         }
         void setStatus(Enum<?> nachStatus, BuchungsRepository repository,MonetaryAmount betrag);
+        void addBetrag(Enum<?> status, MonetaryAmount betrag);
          
 }

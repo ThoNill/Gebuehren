@@ -4,6 +4,11 @@ import javax.money.MonetaryAmount;
 
 public abstract class BebuchungsEntitätImpl implements BebuchteEntität{
     protected  Enum<?> status;
+    
+    public BebuchungsEntitätImpl(Enum<?> status) {
+        super();
+        this.status = status;
+    }
 
 
     @Override
