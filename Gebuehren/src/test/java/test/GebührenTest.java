@@ -42,7 +42,7 @@ public class GebührenTest {
                 "Gebühr",betragKonto,gebührKonto);
         repo.setBetrag(betrag);
         repo.setProzentsatz(prozentsatz);
-        Bewegungen w = gebühr.getWerte(abrechnung);
+        Bewegungen w = gebühr.getBewegungen(abrechnung);
         Bewegungen erwartet = getErwarteteWerte(betrag, erwarteteGebühr, mwst);
         assertEquals(erwartet, w);
     }

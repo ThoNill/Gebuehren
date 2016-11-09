@@ -1,6 +1,15 @@
 package gebühren;
 
 import abrechnung.Abrechnung;
+
+/**
+ * 
+ * @author Thomas Nill
+ * 
+ * Eine Gebühr dient dazu, Bewegungen für eine Gebührenbuchung zu erzeugen.
+ * Jede Gebührart hat ihr Repository das zu ihr passt und die zur Berechnung der Gebühr benötigten Werte holt.
+ *
+ */
 import abrechnung.Repository;
 import abrechnung.BewegungenQuelle;
 import beans.Bewegungen;
@@ -18,7 +27,7 @@ public abstract class Gebühr<REPO extends Repository> implements BewegungenQuell
     }
     
     @Override
-    public Bewegungen getWerte(Abrechnung abrechnung) {
+    public Bewegungen getBewegungen(Abrechnung abrechnung) {
         markieren(repository,abrechnung);
         return getWerte(repository,abrechnung);
     }

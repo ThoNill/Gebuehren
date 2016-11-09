@@ -25,7 +25,7 @@ public class ÜberzahlungsZins implements BewegungenQuelle{
     }
 
     @Override
-    public Bewegungen getWerte(Abrechnung abrechnung) {
+    public Bewegungen getBewegungen(Abrechnung abrechnung) {
         Bewegungen überzahlung = repository.getAktuelleWerte(überzahlungsArt, abrechnung);
         Bewegungen w = new Bewegungen();
         MonetaryAmount überzahlungsBetrag = überzahlung.get(ÜberzahlungsKonto);

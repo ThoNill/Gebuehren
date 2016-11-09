@@ -20,7 +20,7 @@ public class ‹berzahlung implements BewegungenQuelle{
     }
 
     @Override
-    public Bewegungen getWerte(Abrechnung abrechnung) {
+    public Bewegungen getBewegungen(Abrechnung abrechnung) {
         MonetaryAmount alte‹berzahlung = getAlte‹bezahlung(abrechnung);
         MonetaryAmount aktuellesSaldo = repository.saldo(abrechnung);
         MonetaryAmount reduziertesSaldo = aktuellesSaldo.subtract(alte‹berzahlung);

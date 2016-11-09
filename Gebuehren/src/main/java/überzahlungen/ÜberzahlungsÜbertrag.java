@@ -26,7 +26,7 @@ public class ‹berzahlungs‹bertrag extends ‹berzahlung {
     }
 
     @Override
-    public Bewegungen getWerte(Abrechnung abrechnung) {
+    public Bewegungen getBewegungen(Abrechnung abrechnung) {
         MonetaryAmount alte‹berzahlung = getAlte‹bezahlung(abrechnung);
         Bewegungen w = new Bewegungen();
         if (!alte‹berzahlung.isZero()) {

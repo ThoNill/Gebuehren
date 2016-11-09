@@ -52,7 +52,7 @@ public class ProzentualSteps {
     public void dann_ist_die_Gebühr(double dergebnis) throws Throwable {
         ProzentualeGebühr gebühr = new ProzentualeGebühr(repo, Arten.GEBÜHR,
                 "Gebühr",betragKonto,gebührKonto);
-        Bewegungen w = gebühr.getWerte(abrechnung);
+        Bewegungen w = gebühr.getBewegungen(abrechnung);
         MonetaryAmount berechnet = w.get(gebührKonto);
         MonetaryAmount ergebnis = Geld.createAmount(dergebnis).negate();
         assertEquals(ergebnis,berechnet);

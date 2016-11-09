@@ -48,7 +48,7 @@ public class FixSteps {
     public void dann_ist_die_Gebühr_eben(double dergebnis) throws Throwable {
         FixeGebühr gebühr = new FixeGebühr(repo, Arten.GEBÜHR,
                 "Gebühr",gebührKonto);
-        Bewegungen w = gebühr.getWerte(abrechnung);
+        Bewegungen w = gebühr.getBewegungen(abrechnung);
         MonetaryAmount berechnet = w.get(gebührKonto);
         MonetaryAmount ergebnis = Geld.createAmount(dergebnis).negate();
         assertEquals(ergebnis,berechnet);

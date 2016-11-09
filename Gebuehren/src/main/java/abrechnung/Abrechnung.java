@@ -6,6 +6,15 @@ import java.util.List;
 import beans.BuchungsAuftrag;
 import beans.Bewegungen;
 
+/**
+ * 
+ * @author Thomas Nill
+ * 
+ * Eine Abrechnung ist eine Liste von BewegungenQuelle, die beim Abrechnen eine Reihe von Buchungen erzeugen.
+ * Jede BewegungenQuelle erzeugt eine Buchung. Diese wird mit eventuell schon vorhandenen Buchungen desselben Typs
+ * verglichen. Dann wird die Differenz zwischen Soll und Istzustand gebucht.
+ *
+ */
 public abstract class Abrechnung {
     private List<BewegungenQuelle> quellen = new ArrayList<>();
     private Repository repository;
@@ -24,7 +33,7 @@ public abstract class Abrechnung {
     }
 
     private void abrechnen(BewegungenQuelle g) {
-        Bewegungen neu = g.getWerte(this);
+        Bewegungen neu = g.getBewegungen(this);
         Abrechnung relevanteAbrechnung = g.getRelevanteAbrechnung(this);
         Bewegungen alt = repository.getAktuelleWerte(g.getArt(),relevanteAbrechnung);
         Bewegungen diff = neu.differenz(alt);

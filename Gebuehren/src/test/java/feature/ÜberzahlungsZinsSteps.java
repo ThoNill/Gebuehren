@@ -66,7 +66,7 @@ public class ÜberzahlungsZinsSteps {
     @Dann("^ist der Zins (\\-{0,1}\\d+\\,{0,1}\\d*)$")
     public void dann_ist_der_Zins(double dergebnis) throws Throwable {
         ÜberzahlungsZins zins = new ÜberzahlungsZins(repo,überzahlungKonto, zinsKonto,TestÜberzahlungsRepository.Art.ÜBERZAHLUNG_AUS_DEM_VORMONAT,TestÜberzahlungsRepository.Art.ÜBERZAHLUNGS_ZINS);
-        Bewegungen w = zins.getWerte(abrechnung);
+        Bewegungen w = zins.getBewegungen(abrechnung);
         MonetaryAmount berechnet = w.get(zinsKonto);
         MonetaryAmount ergebnis = Geld.createAmount(dergebnis).negate();
         assertEquals(ergebnis,berechnet);
