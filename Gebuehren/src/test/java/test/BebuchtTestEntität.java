@@ -6,32 +6,52 @@ import javax.money.MonetaryAmount;
 
 import org.junit.internal.runners.model.EachTestNotifier;
 
+import beans.Konto;
 import bebucht.BebuchteEntität;
 import bebucht.BuchungsRepository;
 import bebucht.EinfacheEntität;
-import bebucht.StatusWechselGruppe;
+import bebucht.Übergang;
+import bebucht.ÜbergangsGruppe;
 
 public class BebuchtTestEntität extends EinfacheEntität {
     public enum Art {
         AUFTRAG, LIEFERSCHEIN, RECHNUNG, GUTSCHRIFT
     }
 
-    public enum EStatus {
+    public enum Status {
         INIT, ANGELEGT, GEBUCHT, STORNIERT
     }
 
+    public enum Buchungsart {
+        ANLAGE, STORNIEREN
+    }
+
+    public static Konto init = new TestKonto(10, "Init");
+    public static Konto soll = new TestKonto(20, "Soll");
+    public static Konto storniert = new TestKonto(30, "Storniert");
+
     public BebuchtTestEntität(Art art, long referenzId, MonetaryAmount betrag,
             BuchungsRepository repository) {
-        super(art, referenzId, betrag, repository, EStatus.INIT);
-        setStatus(EStatus.ANGELEGT, repository);
+        super(art, referenzId, betrag, repository, Status.INIT);
+        addBetrag(init, betrag);
+        buchen(repository, Buchungsart.ANLAGE, Buchungsart.ANLAGE.name()
+                + " angelegt", betrag);
     }
 
     @Override
-    public StatusWechselGruppe getMöglicheStatusWechsel() {
-        return new StatusWechselGruppe().addStatusWechsel(art,
-                art.name() + "angelegt", EStatus.ANGELEGT).addStatusWechsel(
-                art, art.name() + " storniert", EStatus.STORNIERT);
+    public ÜbergangsGruppe getMöglicheÜbergänge() {
+        return new ÜbergangsGruppe().addÜbergang(Buchungsart.STORNIEREN,
+                Status.ANGELEGT, Status.STORNIERT, soll, storniert)
+                .addÜbergang(Buchungsart.ANLAGE, Status.INIT, Status.ANGELEGT,
+                        init, soll);
+    }
 
+    public MonetaryAmount getSoll() {
+        return getBetrag(soll);
+    }
+
+    public MonetaryAmount getStorniert() {
+        return getBetrag(storniert);
     }
 
 }

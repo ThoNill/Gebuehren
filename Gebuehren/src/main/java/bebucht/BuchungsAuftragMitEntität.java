@@ -1,21 +1,28 @@
 package bebucht;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import beans.BuchungsAuftrag;
 import beans.Werte;
 
 public class BuchungsAuftragMitEntität extends BuchungsAuftrag {
-    private List<BebuchteEntität> entitäten;
-
-    public BuchungsAuftragMitEntität(Enum<?> art, String buchungsText, Werte werte,BebuchteEntität entität) {
+    private Set<BebuchteEntität> entitäten;
+ 
+    
+    public BuchungsAuftragMitEntität(Enum<?> art, String buchungsText) {
+        super(art, buchungsText, new Werte());
+        this.entitäten = new HashSet<>();
+    }
+    
+    public BuchungsAuftragMitEntität(Enum<?> art, String buchungsText, Werte werte) {
         super(art, buchungsText, werte);
-        this.entitäten = new ArrayList<>();
-        addEntität(entität);
+        this.entitäten = new HashSet<>();
     }
 
-    public List<BebuchteEntität> getEntitäten() {
+    public Set<BebuchteEntität> getEntitäten() {
         return entitäten;
     }
     
@@ -33,5 +40,7 @@ public class BuchungsAuftragMitEntität extends BuchungsAuftrag {
         entitäten.add(entität);
         return this;
     }
+
+ 
 
 }
