@@ -2,7 +2,7 @@ package abrechnung;
 
 import beans.Bewegungen;
 
-public interface WerteQuelle {
+public interface BewegungenQuelle {
      Bewegungen getWerte(Abrechnung abrechnung);
      Enum<?> getArt();
      String getBuchungsText();

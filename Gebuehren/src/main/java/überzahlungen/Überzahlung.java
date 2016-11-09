@@ -4,11 +4,11 @@ import javax.money.MonetaryAmount;
 
 import abrechnung.Abrechnung;
 import abrechnung.Repository;
-import abrechnung.WerteQuelle;
+import abrechnung.BewegungenQuelle;
 import beans.Konto;
 import beans.Bewegungen;
 
-public class Überzahlung implements WerteQuelle{
+public class Überzahlung implements BewegungenQuelle{
     private Repository repository;
     private Konto überzahlungsKonto;
     private Enum<?> überzahlungsArt;

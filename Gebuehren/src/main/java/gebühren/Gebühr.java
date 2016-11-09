@@ -2,10 +2,10 @@ package gebühren;
 
 import abrechnung.Abrechnung;
 import abrechnung.Repository;
-import abrechnung.WerteQuelle;
+import abrechnung.BewegungenQuelle;
 import beans.Bewegungen;
 
-public abstract class Gebühr<REPO extends Repository> implements WerteQuelle {
+public abstract class Gebühr<REPO extends Repository> implements BewegungenQuelle {
     private REPO repository;
     private Enum<?> art;
     private String buchungsText;

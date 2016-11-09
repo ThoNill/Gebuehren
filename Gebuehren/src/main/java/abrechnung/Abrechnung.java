@@ -7,7 +7,7 @@ import beans.BuchungsAuftrag;
 import beans.Bewegungen;
 
 public abstract class Abrechnung {
-    private List<WerteQuelle> quellen = new ArrayList<>();
+    private List<BewegungenQuelle> quellen = new ArrayList<>();
     private Repository repository;
 
     public Abrechnung(Repository db) {
@@ -18,12 +18,12 @@ public abstract class Abrechnung {
     public abstract Abrechnung nächsteAbrechnung();
     
     public void abrechnen() {
-        for (WerteQuelle g : quellen) {
+        for (BewegungenQuelle g : quellen) {
             abrechnen(g);
         }
     }
 
-    private void abrechnen(WerteQuelle g) {
+    private void abrechnen(BewegungenQuelle g) {
         Bewegungen neu = g.getWerte(this);
         Abrechnung relevanteAbrechnung = g.getRelevanteAbrechnung(this);
         Bewegungen alt = repository.getAktuelleWerte(g.getArt(),relevanteAbrechnung);
@@ -31,7 +31,7 @@ public abstract class Abrechnung {
         repository.insertBuchung(relevanteAbrechnung,new BuchungsAuftrag(g.getArt(),g.getBuchungsText(),diff));
     }
     
-    public boolean add(WerteQuelle e) {
+    public boolean add(BewegungenQuelle e) {
         return quellen.add(e);
     }
 

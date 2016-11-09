@@ -3,12 +3,12 @@ package überzahlungen;
 import javax.money.MonetaryAmount;
 
 import abrechnung.Abrechnung;
-import abrechnung.WerteQuelle;
+import abrechnung.BewegungenQuelle;
 import beans.Geld;
 import beans.Konto;
 import beans.Bewegungen;
 
-public class ÜberzahlungsZins implements WerteQuelle{
+public class ÜberzahlungsZins implements BewegungenQuelle{
     private ÜberzahlugsRepository repository;
     private Konto ÜberzahlungsZinsKonto;
     private Konto ÜberzahlungsKonto;

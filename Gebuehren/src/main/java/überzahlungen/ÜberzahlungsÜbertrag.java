@@ -4,7 +4,7 @@ import javax.money.MonetaryAmount;
 
 import abrechnung.Abrechnung;
 import abrechnung.Repository;
-import abrechnung.WerteQuelle;
+import abrechnung.BewegungenQuelle;
 import beans.Konto;
 import beans.Bewegungen;
 
