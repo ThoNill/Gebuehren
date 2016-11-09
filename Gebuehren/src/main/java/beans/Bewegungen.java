@@ -6,10 +6,10 @@ import java.util.Set;
 
 import javax.money.MonetaryAmount;
 
-public class Werte extends HashMap<Konto, MonetaryAmount> {
+public class Bewegungen extends HashMap<Konto, MonetaryAmount> {
 
-    public Werte differenz(Werte b) {
-        Werte dWerte = new Werte();
+    public Bewegungen differenz(Bewegungen b) {
+        Bewegungen dWerte = new Bewegungen();
         Set<Konto> alle = new HashSet<>();
         alle.addAll(this.keySet());
         alle.addAll(b.keySet());
@@ -35,10 +35,15 @@ public class Werte extends HashMap<Konto, MonetaryAmount> {
         return summe(Geld.createAmount(0));
     }
 
-    private MonetaryAmount differenz(Konto k, Werte b) {
+    private MonetaryAmount differenz(Konto k, Bewegungen b) {
         MonetaryAmount ga = get(k);
         MonetaryAmount gb = b.get(k);
         return ga.subtract(gb);
+    }
+
+    public MonetaryAmount add(Konto konto,MonetaryAmount betrag) {
+        MonetaryAmount amount = get(konto);
+        return put(konto,amount.add(betrag));
     }
 
     public MonetaryAmount get(Konto konto) {
@@ -48,12 +53,13 @@ public class Werte extends HashMap<Konto, MonetaryAmount> {
         }
         return amount;
     }
+    
 
     public MonetaryAmount put(Konto konto, MonetaryAmount amount) {
         if (konto.hasErgänzung()) {
-            Werte werte = konto.ergänzen(amount);
-            for (Konto k : werte.keySet()) {
-                MonetaryAmount a = werte.get(k);
+            Bewegungen bewegungen = konto.ergänzen(amount);
+            for (Konto k : bewegungen.keySet()) {
+                MonetaryAmount a = bewegungen.get(k);
                 super.put(k, a);
             }
         } else {
@@ -67,13 +73,13 @@ public class Werte extends HashMap<Konto, MonetaryAmount> {
         return "Werte [entrySet=" + entrySet() + "]";
     }
 
-    public Werte add(Werte werte) {
-        Werte summe = new Werte();
+    public Bewegungen add(Bewegungen bewegungen) {
+        Bewegungen summe = new Bewegungen();
         Set<Konto> alle = new HashSet<>();
         alle.addAll(this.keySet());
-        alle.addAll(werte.keySet());
+        alle.addAll(bewegungen.keySet());
         for (Konto k : alle) {
-            MonetaryAmount d = summe(k, werte);
+            MonetaryAmount d = summe(k, bewegungen);
             if (!d.isZero() ) {
                 summe.put(k, d);
             }
@@ -81,7 +87,7 @@ public class Werte extends HashMap<Konto, MonetaryAmount> {
         return summe;
     }
     
-    private MonetaryAmount summe(Konto k, Werte b) {
+    private MonetaryAmount summe(Konto k, Bewegungen b) {
         MonetaryAmount ga = get(k);
         MonetaryAmount gb = b.get(k);
         return ga.add(gb);

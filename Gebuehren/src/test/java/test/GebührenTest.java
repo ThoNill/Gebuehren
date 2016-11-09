@@ -20,7 +20,7 @@ import abrechnung.Abrechnung;
 import abrechnung.Repository;
 import beans.Geld;
 import beans.Konto;
-import beans.Werte;
+import beans.Bewegungen;
 
 @RunWith(org.junit.runners.Parameterized.class)
 public class GebührenTest {
@@ -42,13 +42,13 @@ public class GebührenTest {
                 "Gebühr",betragKonto,gebührKonto);
         repo.setBetrag(betrag);
         repo.setProzentsatz(prozentsatz);
-        Werte w = gebühr.getWerte(abrechnung);
-        Werte erwartet = getErwarteteWerte(betrag, erwarteteGebühr, mwst);
+        Bewegungen w = gebühr.getWerte(abrechnung);
+        Bewegungen erwartet = getErwarteteWerte(betrag, erwarteteGebühr, mwst);
         assertEquals(erwartet, w);
     }
 
-    private Werte getErwarteteWerte(long betrag, long gebühr, long mwst) {
-        Werte w = new Werte();
+    private Bewegungen getErwarteteWerte(long betrag, long gebühr, long mwst) {
+        Bewegungen w = new Bewegungen();
         w.put(betragKonto, Geld.createAmount(betrag / 100.0));
         w.put(gebührKonto, Geld.createAmount(gebühr / 100.0).negate());
         w.put(repo.getMwstKonto(abrechnung), Geld.createAmount(mwst / 100.0).negate());

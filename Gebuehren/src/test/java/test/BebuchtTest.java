@@ -6,7 +6,7 @@ import static org.junit.Assert.*;
 import beans.Geld;
 import bebucht.BuchungsAuftragMitEntit‰t;
 import bebucht.BuchungsRepository;
-import bebucht.EinfacheEntit‰t;
+import bebucht.Entit‰tMit‹berg‰ngen;
 
 public class BebuchtTest {
 

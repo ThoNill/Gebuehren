@@ -6,5 +6,5 @@ public interface Konto {
     int getNummer();
     String getName();
     boolean hasErgänzung();
-    Werte ergänzen(MonetaryAmount amount);
+    Bewegungen ergänzen(MonetaryAmount amount);
 }

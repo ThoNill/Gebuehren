@@ -9,11 +9,11 @@ import org.junit.internal.runners.model.EachTestNotifier;
 import beans.Konto;
 import bebucht.BebuchteEntit‰t;
 import bebucht.BuchungsRepository;
-import bebucht.EinfacheEntit‰t;
+import bebucht.Entit‰tMit‹berg‰ngen;
 import bebucht.‹bergang;
 import bebucht.‹bergangsGruppe;
 
-public class BebuchtTestEntit‰t extends EinfacheEntit‰t {
+public class BebuchtTestEntit‰t extends Entit‰tMit‹berg‰ngen {
     public enum Art {
         AUFTRAG, LIEFERSCHEIN, RECHNUNG, GUTSCHRIFT
     }

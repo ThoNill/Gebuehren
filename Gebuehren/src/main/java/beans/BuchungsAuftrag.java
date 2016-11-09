@@ -4,16 +4,16 @@ package beans;
 
 
 public class BuchungsAuftrag extends BuchungsartUndText {
-    private Werte werte;
+    private Bewegungen bewegungen;
     
     public BuchungsAuftrag(Enum<?> art,String buchungsText,
-            Werte werte) {
+            Bewegungen bewegungen) {
         super(art,buchungsText);
-        this.werte = werte;
+        this.bewegungen = bewegungen;
     }
 
-    public Werte getWerte() {
-        return werte;
+    public Bewegungen getWerte() {
+        return bewegungen;
     }
 
 }

@@ -3,7 +3,7 @@ package test;
 import javax.money.MonetaryAmount;
 
 import beans.Konto;
-import beans.Werte;
+import beans.Bewegungen;
 
 public class TestKonto implements Konto {
     private int nummer;
@@ -25,8 +25,8 @@ public class TestKonto implements Konto {
     }
 
     @Override
-    public Werte ergänzen(MonetaryAmount amount) {
-        Werte w = new Werte();
+    public Bewegungen ergänzen(MonetaryAmount amount) {
+        Bewegungen w = new Bewegungen();
         w.put(this,amount);
         return w;
     }

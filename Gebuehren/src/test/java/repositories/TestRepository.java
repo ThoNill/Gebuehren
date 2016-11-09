@@ -9,7 +9,7 @@ import beans.BuchungsAuftrag;
 import beans.BuchungsartUndText;
 import beans.Geld;
 import beans.Konto;
-import beans.Werte;
+import beans.Bewegungen;
 import gebühren.FixeGebührRepository;
 import gebühren.ProzentualRepository;
 
@@ -17,15 +17,15 @@ public class TestRepository implements Repository{
 
     private Konto mwst = new TestKonto(1,"Mwst");
     private MonetaryAmount saldo;
-    private Werte aktuelleWerte;
+    private Bewegungen aktuelleWerte;
 
     public TestRepository() {
         super();
-        aktuelleWerte = new Werte();
+        aktuelleWerte = new Bewegungen();
     }
 
     @Override
-    public Werte getAktuelleWerte(Enum art, Abrechnung a) {
+    public Bewegungen getAktuelleWerte(Enum art, Abrechnung a) {
         return aktuelleWerte;
     }
 
@@ -56,7 +56,7 @@ public class TestRepository implements Repository{
         this.saldo = betrag;
     }
 
-    public void setAktuelleWerte(Werte aktuelleWerte) {
+    public void setAktuelleWerte(Bewegungen aktuelleWerte) {
         this.aktuelleWerte = aktuelleWerte;
     }
 

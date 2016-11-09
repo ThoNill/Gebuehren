@@ -2,10 +2,10 @@ package bebucht;
 
 import javax.money.MonetaryAmount;
 
-public abstract class BebuchungsEntitätImpl implements BebuchteEntität{
+public abstract class EntitätMitStatus implements BebuchteEntität{
     protected  Enum<?> status;
     
-    public BebuchungsEntitätImpl(Enum<?> status) {
+    public EntitätMitStatus(Enum<?> status) {
         super();
         this.status = status;
     }

@@ -19,7 +19,7 @@ import überzahlungen.ÜberzahlungsÜbertrag;
 import abrechnung.Abrechnung;
 import beans.Geld;
 import beans.Konto;
-import beans.Werte;
+import beans.Bewegungen;
 
 public class ÜbertragsTest {
     public enum Art {
@@ -37,14 +37,14 @@ public class ÜbertragsTest {
     public void testen(double alteÜberzahlung,double erwarteterÜbertrag) {
         ÜberzahlungsÜbertrag übertrag = new ÜberzahlungsÜbertrag(repo, Art.ÜBERZAHLUNG,überzahlungsKonto,Art.ÜBERTRAG,übertragKonto);
         repo.setAktuelleWerte(createWerte(überzahlungsKonto,alteÜberzahlung));
-        Werte w = übertrag.getWerte(abrechnung);
-        Werte erwartet = createWerte(überzahlungsKonto,erwarteterÜbertrag);
+        Bewegungen w = übertrag.getWerte(abrechnung);
+        Bewegungen erwartet = createWerte(überzahlungsKonto,erwarteterÜbertrag);
         assertEquals(erwartet, w);
     }
 
     
-    private Werte createWerte(Konto konto,double betrag) {
-        Werte w = new Werte();
+    private Bewegungen createWerte(Konto konto,double betrag) {
+        Bewegungen w = new Bewegungen();
         if(betrag != 0.0) {
             w.put(konto,Geld.createAmount(betrag));
         }

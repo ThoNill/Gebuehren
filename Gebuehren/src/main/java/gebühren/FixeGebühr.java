@@ -4,7 +4,7 @@ import javax.money.MonetaryAmount;
 
 import abrechnung.Abrechnung;
 import beans.Konto;
-import beans.Werte;
+import beans.Bewegungen;
 
 public class FixeGebühr extends EinfacheGebühr<FixeGebührRepository> {
     protected Konto gebührenKonto;

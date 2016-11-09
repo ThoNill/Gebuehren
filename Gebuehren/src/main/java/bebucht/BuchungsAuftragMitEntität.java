@@ -6,19 +6,19 @@ import java.util.List;
 import java.util.Set;
 
 import beans.BuchungsAuftrag;
-import beans.Werte;
+import beans.Bewegungen;
 
 public class BuchungsAuftragMitEntität extends BuchungsAuftrag {
     private Set<BebuchteEntität> entitäten;
  
     
     public BuchungsAuftragMitEntität(Enum<?> art, String buchungsText) {
-        super(art, buchungsText, new Werte());
+        super(art, buchungsText, new Bewegungen());
         this.entitäten = new HashSet<>();
     }
     
-    public BuchungsAuftragMitEntität(Enum<?> art, String buchungsText, Werte werte) {
-        super(art, buchungsText, werte);
+    public BuchungsAuftragMitEntität(Enum<?> art, String buchungsText, Bewegungen bewegungen) {
+        super(art, buchungsText, bewegungen);
         this.entitäten = new HashSet<>();
     }
 

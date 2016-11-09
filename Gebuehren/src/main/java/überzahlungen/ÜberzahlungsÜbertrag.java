@@ -6,7 +6,7 @@ import abrechnung.Abrechnung;
 import abrechnung.Repository;
 import abrechnung.WerteQuelle;
 import beans.Konto;
-import beans.Werte;
+import beans.Bewegungen;
 
 public class ‹berzahlungs‹bertrag extends ‹berzahlung {
 
@@ -26,9 +26,9 @@ public class ‹berzahlungs‹bertrag extends ‹berzahlung {
     }
 
     @Override
-    public Werte getWerte(Abrechnung abrechnung) {
+    public Bewegungen getWerte(Abrechnung abrechnung) {
         MonetaryAmount alte‹berzahlung = getAlte‹bezahlung(abrechnung);
-        Werte w = new Werte();
+        Bewegungen w = new Bewegungen();
         if (!alte‹berzahlung.isZero()) {
             w.put(¸bertragsKonto, alte‹berzahlung.negate());
         }

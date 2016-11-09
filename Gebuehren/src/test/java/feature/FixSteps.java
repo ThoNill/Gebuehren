@@ -13,7 +13,7 @@ import gebühren.ProzentualeGebühr;
 import abrechnung.Abrechnung;
 import beans.Geld;
 import beans.Konto;
-import beans.Werte;
+import beans.Bewegungen;
 import cucumber.api.java.de.Angenommen;
 import cucumber.api.java.de.Gegebensei;
 import cucumber.api.java.de.Dann;
@@ -48,7 +48,7 @@ public class FixSteps {
     public void dann_ist_die_Gebühr_eben(double dergebnis) throws Throwable {
         FixeGebühr gebühr = new FixeGebühr(repo, Arten.GEBÜHR,
                 "Gebühr",gebührKonto);
-        Werte w = gebühr.getWerte(abrechnung);
+        Bewegungen w = gebühr.getWerte(abrechnung);
         MonetaryAmount berechnet = w.get(gebührKonto);
         MonetaryAmount ergebnis = Geld.createAmount(dergebnis).negate();
         assertEquals(ergebnis,berechnet);

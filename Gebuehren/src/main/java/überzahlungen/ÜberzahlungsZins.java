@@ -6,7 +6,7 @@ import abrechnung.Abrechnung;
 import abrechnung.WerteQuelle;
 import beans.Geld;
 import beans.Konto;
-import beans.Werte;
+import beans.Bewegungen;
 
 public class ÜberzahlungsZins implements WerteQuelle{
     private ÜberzahlugsRepository repository;
@@ -25,9 +25,9 @@ public class ÜberzahlungsZins implements WerteQuelle{
     }
 
     @Override
-    public Werte getWerte(Abrechnung abrechnung) {
-        Werte überzahlung = repository.getAktuelleWerte(überzahlungsArt, abrechnung);
-        Werte w = new Werte();
+    public Bewegungen getWerte(Abrechnung abrechnung) {
+        Bewegungen überzahlung = repository.getAktuelleWerte(überzahlungsArt, abrechnung);
+        Bewegungen w = new Bewegungen();
         MonetaryAmount überzahlungsBetrag = überzahlung.get(ÜberzahlungsKonto);
         if (Geld.absolutGrößer(überzahlungsBetrag,repository.getUntergrenzeFürZinsberechnung())) {
             MonetaryAmount überzahlungsZins = Geld.percentAmount(überzahlungsBetrag,repository.getÜberzahlungsZins());

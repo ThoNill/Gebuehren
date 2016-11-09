@@ -8,22 +8,22 @@ import javax.money.MonetaryAmount;
 import beans.BuchungsAuftrag;
 import beans.Geld;
 import beans.Konto;
-import beans.Werte;
+import beans.Bewegungen;
 
-public abstract class EinfacheEntität extends BebuchungsEntitätImpl {
+public abstract class EntitätMitÜbergängen extends EntitätMitStatus {
 
     protected Enum<?> art;
     protected long referenzId;
     protected MonetaryAmount betrag;
-    protected Werte andereBeträge;
+    protected Bewegungen andereBeträge;
 
-    public EinfacheEntität(Enum<?> art, long referenzId, MonetaryAmount betrag,
+    public EntitätMitÜbergängen(Enum<?> art, long referenzId, MonetaryAmount betrag,
             BuchungsRepository repository, Enum<?> initialerStatus) {
         super(initialerStatus);
         this.art = art;
         this.referenzId = referenzId;
         this.betrag = betrag;
-        andereBeträge = new Werte();
+        andereBeträge = new Bewegungen();
         this.status = initialerStatus;
     }
 
@@ -57,49 +57,49 @@ public abstract class EinfacheEntität extends BebuchungsEntitätImpl {
         return betrag;
     }
 
-    protected void buchen(BuchungsRepository reporitory, Enum<?> art,
+    protected void buchen(BuchungsRepository repository, Enum<?> art,
             String buchungsText, MonetaryAmount betrag) {
-        BuchungsAuftragMitEntität auftrag = erzeugeBuchungsAuftrag(reporitory,
+        BuchungsAuftragMitEntität auftrag = erzeugeBuchungsAuftrag(repository,
                 art, buchungsText, betrag);
-        reporitory.insertBuchung(auftrag);
+        repository.insertBuchung(auftrag);
 
     }
 
-    protected void buchen(BuchungsRepository reporitory,
-            EinfacheEntität gegenpart, Enum<?> art, String buchungsText,
+    protected void buchen(BuchungsRepository repository,
+            EntitätMitÜbergängen gegenpart, Enum<?> art, String buchungsText,
             MonetaryAmount betrag) {
-        BuchungsAuftragMitEntität auftrag = erzeugeBuchungsAuftrag(reporitory,
+        BuchungsAuftragMitEntität auftrag = erzeugeBuchungsAuftrag(repository,
                 gegenpart, art, buchungsText, betrag);
-        reporitory.insertBuchung(auftrag);
+        repository.insertBuchung(auftrag);
     }
 
     private BuchungsAuftragMitEntität erzeugeBuchungsAuftrag(
-            BuchungsRepository reporitory, Enum<?> art, String buchungsText,
+            BuchungsRepository repository, Enum<?> art, String buchungsText,
             MonetaryAmount betrag) {
         BuchungsAuftragMitEntität auftrag = new BuchungsAuftragMitEntität(art,
                 buchungsText);
-        this.ergänzeÜbergang(reporitory, auftrag, art, betrag);
+        this.ergänzeÜbergang(repository, auftrag, art, betrag);
         return auftrag;
     }
 
     private BuchungsAuftragMitEntität erzeugeBuchungsAuftrag(
-            BuchungsRepository reporitory, EinfacheEntität gegenpart,
+            BuchungsRepository repository, EntitätMitÜbergängen gegenpart,
             Enum<?> art, String buchungsText, MonetaryAmount betrag) {
         BuchungsAuftragMitEntität auftrag = new BuchungsAuftragMitEntität(art,
                 buchungsText);
-        this.ergänzeÜbergang(reporitory, auftrag, art, betrag);
-        gegenpart.ergänzeÜbergang(reporitory, auftrag, art, betrag.negate());
+        this.ergänzeÜbergang(repository, auftrag, art, betrag);
+        gegenpart.ergänzeÜbergang(repository, auftrag, art, betrag.negate());
         return auftrag;
     }
 
-    private void ergänzeÜbergang(BuchungsRepository reporitory,
+    private void ergänzeÜbergang(BuchungsRepository repository,
             BuchungsAuftragMitEntität auftrag, Enum<?> art,
             MonetaryAmount betrag) {
         Übergang übergang = getMöglicheÜbergänge().getÜbergang(art);
-        ergänzeÜbergang(reporitory, auftrag, übergang, betrag);
+        ergänzeÜbergang(repository, auftrag, übergang, betrag);
     }
 
-    private void ergänzeÜbergang(BuchungsRepository reporitory,
+    private void ergänzeÜbergang(BuchungsRepository repository,
             BuchungsAuftragMitEntität auftrag, Übergang übergang,
             MonetaryAmount betrag) {
 
@@ -108,10 +108,10 @@ public abstract class EinfacheEntität extends BebuchungsEntitätImpl {
                     + " ist im falschen Status");
         }
 
-        Werte werte = auftrag.getWerte();
+        Bewegungen bewegungen = auftrag.getWerte();
         if (!betrag.isZero()) {
-            werte.put(übergang.getNachKonto(), betrag);
-            werte.put(reporitory.getGegenKonto(this), betrag.negate());
+            bewegungen.add(übergang.getNachKonto(), betrag);
+            bewegungen.add(repository.getGegenKonto(this), betrag.negate());
             addBetrag(übergang.getVonKonto(), betrag.negate());
             addBetrag(übergang.getNachKonto(), betrag);
         }

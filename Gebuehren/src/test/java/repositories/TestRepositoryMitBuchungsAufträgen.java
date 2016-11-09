@@ -11,7 +11,7 @@ import test.TestKonto;
 import beans.BuchungsAuftrag;
 import beans.Geld;
 import beans.Konto;
-import beans.Werte;
+import beans.Bewegungen;
 import abrechnung.Abrechnung;
 import abrechnung.Repository;
 
@@ -25,14 +25,14 @@ public class TestRepositoryMitBuchungsAufträgen implements ProzentualRepository{
     }
 
     @Override
-    public Werte getAktuelleWerte(Enum<?> art, Abrechnung a) {
-        Werte werte = new Werte();
+    public Bewegungen getAktuelleWerte(Enum<?> art, Abrechnung a) {
+        Bewegungen bewegungen = new Bewegungen();
         for(BuchungsAuftrag b : aufträge) {
             if (art.equals(b.getArt())) {
-                werte = werte.add(b.getWerte());
+                bewegungen = bewegungen.add(b.getWerte());
             }
         }
-        return werte;
+        return bewegungen;
     }
     
    

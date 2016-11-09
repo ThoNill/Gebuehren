@@ -6,7 +6,7 @@ import javax.money.MonetaryAmount;
 
 import beans.Geld;
 import beans.Konto;
-import beans.Werte;
+import beans.Bewegungen;
 
 public class AutoMwstKonto implements Konto {
     private Konto original;
@@ -26,8 +26,8 @@ public class AutoMwstKonto implements Konto {
     }
     
     @Override
-    public Werte ergänzen(MonetaryAmount amount) {
-        Werte w = new Werte();
+    public Bewegungen ergänzen(MonetaryAmount amount) {
+        Bewegungen w = new Bewegungen();
         w.put(original,amount);
         MonetaryAmount mwst = Geld.percentAmount(amount,mwstSatz);
         w.put(this.mwst,mwst);

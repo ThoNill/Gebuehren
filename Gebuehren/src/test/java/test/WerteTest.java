@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import static beans.Geld.*;
 import beans.Konto;
-import beans.Werte;
+import beans.Bewegungen;
 import beans.impl.AutoMwstKonto;
 
 public class WerteTest {
@@ -19,16 +19,16 @@ public class WerteTest {
         Konto k2 = new TestKonto(1002, "Mwst");
         Konto k3 = new TestKonto(1003, "Pauschale");
 
-        Werte werte = new Werte();
-        werte.put(k1, createAmount(3));
-        werte.put(k2, createAmount(4));
-        werte.put(k3, createAmount(5));
+        Bewegungen bewegungen = new Bewegungen();
+        bewegungen.put(k1, createAmount(3));
+        bewegungen.put(k2, createAmount(4));
+        bewegungen.put(k3, createAmount(5));
 
-        MonetaryAmount summe = werte.summe(createAmount(0L));
+        MonetaryAmount summe = bewegungen.summe(createAmount(0L));
 
         assertEquals(3L + 4L + 5L, summe.getNumber().longValue());
         
-        summe = werte.summe();
+        summe = bewegungen.summe();
 
         assertEquals(3L + 4L + 5L, summe.getNumber().longValue());
 
@@ -40,17 +40,17 @@ public class WerteTest {
         Konto k2 = new TestKonto(1002, "Mwst");
         Konto k3 = new TestKonto(1003, "Pauschale");
 
-        Werte werte1 = new Werte();
+        Bewegungen werte1 = new Bewegungen();
         werte1.put(k1, createAmount(3));
         werte1.put(k2, createAmount(4));
         werte1.put(k3, createAmount(5));
 
-        Werte werte2 = new Werte();
+        Bewegungen werte2 = new Bewegungen();
         werte2.put(k1, createAmount(2));
         werte2.put(k2, createAmount(3));
         werte2.put(k3, createAmount(4));
 
-        Werte werte3 = werte1.differenz(werte2);
+        Bewegungen werte3 = werte1.differenz(werte2);
 
         for (Konto k : werte3.keySet()) {
             MonetaryAmount v = werte3.get(k);
@@ -67,14 +67,14 @@ public class WerteTest {
         Konto k2 = new TestKonto(1002, "Mwst");
         AutoMwstKonto ak = new AutoMwstKonto(k1, k2, 0.19);
 
-        Werte werte1 = new Werte();
+        Bewegungen werte1 = new Bewegungen();
         werte1.put(k1, createAmount(100));
         werte1.put(k2, createAmount(19));
 
-        Werte werte2 = new Werte();
+        Bewegungen werte2 = new Bewegungen();
         werte2.put(ak, createAmount(100));
 
-        Werte werte3 = werte1.differenz(werte2);
+        Bewegungen werte3 = werte1.differenz(werte2);
 
         assertEquals(0, werte3.keySet().size());
 

@@ -3,7 +3,7 @@ package gebühren;
 import abrechnung.Abrechnung;
 import abrechnung.Repository;
 import abrechnung.WerteQuelle;
-import beans.Werte;
+import beans.Bewegungen;
 
 public abstract class Gebühr<REPO extends Repository> implements WerteQuelle {
     private REPO repository;
@@ -18,13 +18,13 @@ public abstract class Gebühr<REPO extends Repository> implements WerteQuelle {
     }
     
     @Override
-    public Werte getWerte(Abrechnung abrechnung) {
+    public Bewegungen getWerte(Abrechnung abrechnung) {
         markieren(repository,abrechnung);
         return getWerte(repository,abrechnung);
     }
     
     void markieren(REPO a,Abrechnung abrechnung) {};
-    protected abstract Werte getWerte(REPO repository,Abrechnung abrechnung);
+    protected abstract Bewegungen getWerte(REPO repository,Abrechnung abrechnung);
 
     public REPO getRepository() {
         return repository;

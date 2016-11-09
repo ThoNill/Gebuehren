@@ -13,7 +13,7 @@ import gebühren.ProzentualeGebühr;
 import abrechnung.Abrechnung;
 import beans.Geld;
 import beans.Konto;
-import beans.Werte;
+import beans.Bewegungen;
 import cucumber.api.java.de.Angenommen;
 import cucumber.api.java.de.Gegebensei;
 import cucumber.api.java.de.Dann;
@@ -57,7 +57,7 @@ public class ÜberzahlungsZinsSteps {
 
     @Und("^die Überzahlung ist (\\-{0,1}\\d+\\,{0,1}\\d*)$")
     public void die_Überzahlung_ist(long betrag) throws Throwable {
-        Werte w = new Werte();
+        Bewegungen w = new Bewegungen();
         w.putIfAbsent(überzahlungKonto,Geld.createAmount(betrag));
         repo.setAktuelleWerte(w);
     }
@@ -66,7 +66,7 @@ public class ÜberzahlungsZinsSteps {
     @Dann("^ist der Zins (\\-{0,1}\\d+\\,{0,1}\\d*)$")
     public void dann_ist_der_Zins(double dergebnis) throws Throwable {
         ÜberzahlungsZins zins = new ÜberzahlungsZins(repo,überzahlungKonto, zinsKonto,TestÜberzahlungsRepository.Art.ÜBERZAHLUNG_AUS_DEM_VORMONAT,TestÜberzahlungsRepository.Art.ÜBERZAHLUNGS_ZINS);
-        Werte w = zins.getWerte(abrechnung);
+        Bewegungen w = zins.getWerte(abrechnung);
         MonetaryAmount berechnet = w.get(zinsKonto);
         MonetaryAmount ergebnis = Geld.createAmount(dergebnis).negate();
         assertEquals(ergebnis,berechnet);

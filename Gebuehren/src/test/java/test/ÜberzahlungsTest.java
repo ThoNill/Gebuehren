@@ -18,7 +18,7 @@ import überzahlungen.Überzahlung;
 import abrechnung.Abrechnung;
 import beans.Geld;
 import beans.Konto;
-import beans.Werte;
+import beans.Bewegungen;
 
 public class ÜberzahlungsTest {
     public enum Art {
@@ -37,14 +37,14 @@ public class ÜberzahlungsTest {
         Überzahlung überzahlung = new Überzahlung(repo, Art.ÜBERZAHLUNG,überzahlungsKonto);
         repo.setSaldo(Geld.createAmount(neuesSaldo));
         repo.setAktuelleWerte(createWerte(überzahlungsKonto,alteÜberzahlung));
-        Werte w = überzahlung.getWerte(abrechnung);
-        Werte erwartet = createWerte(überzahlungsKonto,erwarteteÜberzahlung);
+        Bewegungen w = überzahlung.getWerte(abrechnung);
+        Bewegungen erwartet = createWerte(überzahlungsKonto,erwarteteÜberzahlung);
         assertEquals(erwartet, w);
     }
 
     
-    private Werte createWerte(Konto konto,double betrag) {
-        Werte w = new Werte();
+    private Bewegungen createWerte(Konto konto,double betrag) {
+        Bewegungen w = new Bewegungen();
         if(betrag != 0.0) {
             w.put(konto,Geld.createAmount(betrag));
         }

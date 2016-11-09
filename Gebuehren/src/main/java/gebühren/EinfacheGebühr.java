@@ -3,7 +3,7 @@ package gebühren;
 import javax.money.MonetaryAmount;
 
 import beans.Konto;
-import beans.Werte;
+import beans.Bewegungen;
 import beans.impl.AutoMwstKonto;
 import abrechnung.Abrechnung;
 import abrechnung.Repository;
@@ -18,12 +18,12 @@ public abstract class EinfacheGebühr<REPO extends Repository> extends  Gebühr<RE
     }
 
     @Override
-    protected Werte getWerte(REPO repository, Abrechnung abrechnung) {
+    protected Bewegungen getWerte(REPO repository, Abrechnung abrechnung) {
       
         MonetaryAmount gebühr = getGebühr(repository,abrechnung);
         Konto gKonto = holeGebührenKonto(repository, abrechnung);
         
-        Werte w = new Werte();
+        Bewegungen w = new Bewegungen();
         w.put(gKonto, gebühr.negate());
         return w;
     }

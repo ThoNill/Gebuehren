@@ -6,7 +6,7 @@ import abrechnung.Abrechnung;
 import abrechnung.Repository;
 import abrechnung.WerteQuelle;
 import beans.Konto;
-import beans.Werte;
+import beans.Bewegungen;
 
 public class Überzahlung implements WerteQuelle{
     private Repository repository;
@@ -20,11 +20,11 @@ public class Überzahlung implements WerteQuelle{
     }
 
     @Override
-    public Werte getWerte(Abrechnung abrechnung) {
+    public Bewegungen getWerte(Abrechnung abrechnung) {
         MonetaryAmount alteÜberzahlung = getAlteÜbezahlung(abrechnung);
         MonetaryAmount aktuellesSaldo = repository.saldo(abrechnung);
         MonetaryAmount reduziertesSaldo = aktuellesSaldo.subtract(alteÜberzahlung);
-        Werte w = new Werte();
+        Bewegungen w = new Bewegungen();
         if (reduziertesSaldo.isNegative()) {
             w.put(überzahlungsKonto, reduziertesSaldo.negate());
         }
@@ -32,7 +32,7 @@ public class Überzahlung implements WerteQuelle{
     }
 
     protected MonetaryAmount getAlteÜbezahlung(Abrechnung abrechnung) {
-        Werte alteBuchung = repository.getAktuelleWerte(überzahlungsArt, abrechnung);
+        Bewegungen alteBuchung = repository.getAktuelleWerte(überzahlungsArt, abrechnung);
         return alteBuchung.get(überzahlungsKonto);
     }
 

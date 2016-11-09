@@ -1,9 +1,9 @@
 package abrechnung;
 
-import beans.Werte;
+import beans.Bewegungen;
 
 public interface WerteQuelle {
-     Werte getWerte(Abrechnung abrechnung);
+     Bewegungen getWerte(Abrechnung abrechnung);
      Enum<?> getArt();
      String getBuchungsText();
      

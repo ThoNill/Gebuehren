@@ -5,7 +5,7 @@ import javax.money.MonetaryAmount;
 import abrechnung.Abrechnung;
 import beans.Geld;
 import beans.Konto;
-import beans.Werte;
+import beans.Bewegungen;
 import beans.impl.AutoMwstKonto;
 
 public abstract class BetragsabhängigeGebühr<REPO extends BetragsRepository> extends EinfacheGebühr<REPO> {
@@ -27,8 +27,8 @@ public abstract class BetragsabhängigeGebühr<REPO extends BetragsRepository> ext
     }
     
     @Override
-    protected Werte getWerte(REPO repository, Abrechnung abrechnung) {
-        Werte w = super.getWerte(repository,abrechnung);
+    protected Bewegungen getWerte(REPO repository, Abrechnung abrechnung) {
+        Bewegungen w = super.getWerte(repository,abrechnung);
         MonetaryAmount betrag = repository.getBetrag();
         w.put(betragsKonto, betrag);
         return w;
