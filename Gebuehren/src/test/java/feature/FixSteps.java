@@ -1,26 +1,19 @@
 package feature;
 
+import static org.junit.Assert.assertEquals;
+
 import javax.money.MonetaryAmount;
 
-import org.junit.Test;
-
 import repositories.TestFixeGebürRepository;
-import repositories.TestProzentualRepository;
 import test.TestKonto;
-import static org.junit.Assert.*;
-import gebühren.FixeGebühr;
-import gebühren.ProzentualeGebühr;
 import abrechnung.Abrechnung;
 import betrag.Geld;
 import buchung.Bewegungen;
 import buchung.Konto;
 import cucumber.api.java.de.Angenommen;
-import cucumber.api.java.de.Gegebensei;
 import cucumber.api.java.de.Dann;
-import cucumber.api.java.de.Wenn;
-import cucumber.api.java.de.Und;
-import cucumber.api.PendingException;
 import entities.TestAbrechnung;
+import gebühren.FixeGebühr;
 
 
 public class FixSteps {
@@ -47,8 +40,8 @@ public class FixSteps {
     @Dann("^ist die Gebühr eben (\\-{0,1}\\d+\\,{0,1}\\d*)$")
     public void dann_ist_die_Gebühr_eben(double dergebnis) throws Throwable {
         FixeGebühr gebühr = new FixeGebühr(repo, Arten.GEBÜHR,
-                "Gebühr",gebührKonto);
-        Bewegungen w = gebühr.getBewegungen(abrechnung);
+                "Gebühr",gebührKonto,abrechnung);
+        Bewegungen w = gebühr.getBewegungen();
         MonetaryAmount berechnet = w.get(gebührKonto);
         MonetaryAmount ergebnis = Geld.createAmount(dergebnis).negate();
         assertEquals(ergebnis,berechnet);

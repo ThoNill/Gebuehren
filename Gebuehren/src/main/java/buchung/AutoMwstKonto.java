@@ -41,5 +41,7 @@ public class AutoMwstKonto implements Konto {
     public String getName() {
         return original.getName();
     }
+    
+   
 
 }

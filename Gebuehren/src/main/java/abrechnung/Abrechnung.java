@@ -3,8 +3,11 @@ package abrechnung;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.money.MonetaryAmount;
+
 import buchung.Bewegungen;
 import buchung.BuchungsAuftrag;
+import buchung.Konto;
 
 /**
  * 
@@ -33,11 +36,10 @@ public abstract class Abrechnung {
     }
 
     private void abrechnen(BewegungenQuelle g) {
-        Bewegungen neu = g.getBewegungen(this);
-        Abrechnung relevanteAbrechnung = g.getRelevanteAbrechnung(this);
-        Bewegungen alt = repository.getAktuelleWerte(g.getArt(),relevanteAbrechnung);
+        Bewegungen neu = g.getBewegungen();
+        Bewegungen alt = getAktuelleWerte(g.getArt());
         Bewegungen diff = neu.differenz(alt);
-        repository.insertBuchung(relevanteAbrechnung,new BuchungsAuftrag(g.getArt(),g.getBuchungsText(),diff));
+        repository.insertBuchung(g.getRelevanteAbrechnung(),new BuchungsAuftrag(g.getArt(),g.getBuchungsText(),diff));
     }
     
     public boolean add(BewegungenQuelle e) {
@@ -47,4 +49,9 @@ public abstract class Abrechnung {
     public Repository getRepository() {
         return repository;
     }
+    
+    public abstract MonetaryAmount getSaldo();
+    public abstract double getMwstSatz();
+    public abstract Konto getMwstKonto();
+    public abstract Bewegungen getAktuelleWerte(Enum<?> art);
 }

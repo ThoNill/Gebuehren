@@ -1,10 +1,11 @@
 package repositories;
 
+import gebühren.FixeGebührRepository;
+import gebühren.ProzentualRepository;
+
 import javax.money.MonetaryAmount;
 
 import betrag.Geld;
-import gebühren.FixeGebührRepository;
-import gebühren.ProzentualRepository;
 
 public class TestProzentualRepository extends TestRepository implements ProzentualRepository, FixeGebührRepository{
     private double prozentsatz;

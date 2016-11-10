@@ -1,7 +1,7 @@
 package gebühren;
 
-import abrechnung.Abrechnung;
 import abrechnung.BewegungenQuelle;
+import buchung.Bewegungen;
 /**
  * 
  * @author Thomas Nill
@@ -10,29 +10,29 @@ import abrechnung.BewegungenQuelle;
  * Jede Gebührart hat ihr Repository das zu ihr passt und die zur Berechnung der Gebühr benötigten Werte holt.
  *
  */
-import abrechnung.Repository;
-import buchung.Bewegungen;
 
-public abstract class Gebühr<REPO extends Repository> implements BewegungenQuelle {
+public abstract class Gebühr<REPO extends MarkierendesRepository> implements
+        BewegungenQuelle {
     private REPO repository;
     private Enum<?> art;
     private String buchungsText;
-    
-    public Gebühr(REPO repository,Enum<?> art,String buchungsText) {
+
+    public Gebühr(REPO repository, Enum<?> art, String buchungsText) {
         super();
         this.repository = repository;
         this.art = art;
         this.buchungsText = buchungsText;
     }
-    
+
     @Override
-    public Bewegungen getBewegungen(Abrechnung abrechnung) {
-        markieren(repository,abrechnung);
-        return getWerte(repository,abrechnung);
+    public Bewegungen getBewegungen() {
+        repository.markieren(getRelevanteAbrechnung());
+        return getWerte(repository);
     }
-    
-    void markieren(REPO a,Abrechnung abrechnung) {};
-    protected abstract Bewegungen getWerte(REPO repository,Abrechnung abrechnung);
+
+  
+
+    protected abstract Bewegungen getWerte(REPO repository);
 
     public REPO getRepository() {
         return repository;
@@ -47,5 +47,5 @@ public abstract class Gebühr<REPO extends Repository> implements BewegungenQuell
     public String getBuchungsText() {
         return buchungsText;
     }
-    
+
 }

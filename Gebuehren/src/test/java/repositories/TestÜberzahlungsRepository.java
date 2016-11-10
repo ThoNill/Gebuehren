@@ -2,8 +2,8 @@ package repositories;
 
 import javax.money.MonetaryAmount;
 
-import betrag.Geld;
 import überzahlungen.ÜberzahlugsRepository;
+import betrag.Geld;
 
 
 public class TestÜberzahlungsRepository extends TestRepository implements ÜberzahlugsRepository{

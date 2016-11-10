@@ -1,8 +1,8 @@
 package repositories;
 
-import javax.money.MonetaryAmount;
-
 import gebühren.FixeGebührRepository;
+
+import javax.money.MonetaryAmount;
 
 public class TestFixeGebürRepository extends TestRepository implements FixeGebührRepository {
     private MonetaryAmount gebühr;
@@ -10,6 +10,7 @@ public class TestFixeGebürRepository extends TestRepository implements FixeGebüh
     public TestFixeGebürRepository() {
    }
 
+    @Override
     public MonetaryAmount getFixeGebühr() {
         return gebühr;
     }

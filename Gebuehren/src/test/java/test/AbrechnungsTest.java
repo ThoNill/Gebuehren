@@ -1,16 +1,15 @@
 package test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import entities.TestAbrechnung;
-import gebühren.ProzentualeGebühr;
 import repositories.TestRepositoryMitBuchungsAufträgen;
 import überzahlungen.Überzahlung;
-import abrechnung.Abrechnung;
 import betrag.Geld;
 import buchung.Konto;
+import entities.TestAbrechnung;
+import gebühren.ProzentualeGebühr;
 
 public class AbrechnungsTest {
     public enum Arten {
@@ -22,20 +21,20 @@ public class AbrechnungsTest {
     Konto überzahlung = new TestKonto(4, "Überzahlung");
     
     TestRepositoryMitBuchungsAufträgen repo = new TestRepositoryMitBuchungsAufträgen(200.0);
-    Abrechnung abrechnung;
-
+    TestAbrechnung abrechnung;
+    
     public AbrechnungsTest() {
         abrechnung = new TestAbrechnung(1,repo);
     }
 
     @Test
     public void testen() {
-        abrechnung.add(new ProzentualeGebühr(repo, Arten.GEBÜHR,"Test",betragKonto,gebührKonto));
-        abrechnung.add(new Überzahlung(repo, Arten.ÜBERZAHLUNG, überzahlung));
+        abrechnung.add(new ProzentualeGebühr(repo, Arten.GEBÜHR,"Test",betragKonto,gebührKonto,abrechnung));
+        abrechnung.add(new Überzahlung(repo, Arten.ÜBERZAHLUNG, überzahlung,abrechnung));
         
         abrechnung.abrechnen();
         
-        System.out.println(repo.saldo(abrechnung));
+        System.out.println(repo.saldo());
         
         assertEquals(Geld.createAmount(200.0),repo.getAktuelleWerte(betragKonto));
         assertEquals(Geld.createAmount(-200.0 * repo.getGebührenProzentsatz()),repo.getAktuelleWerte(gebührKonto));

@@ -12,17 +12,24 @@ public class Überzahlung implements BewegungenQuelle{
     private Repository repository;
     private Konto überzahlungsKonto;
     private Enum<?> überzahlungsArt;
+    private Abrechnung abrechnung;
     
-    public Überzahlung(Repository repository,Enum überzahlungsArt,Konto überzahlungsKonto) {
+    public Überzahlung(Repository repository,Enum überzahlungsArt,Konto überzahlungsKonto,Abrechnung abrechnung) {
         this.repository = repository;
         this.überzahlungsKonto = überzahlungsKonto;
         this.überzahlungsArt = überzahlungsArt;
+        this.abrechnung = abrechnung;
+    }
+    
+    @Override
+    public Abrechnung getRelevanteAbrechnung() {
+        return this.abrechnung;
     }
 
     @Override
-    public Bewegungen getBewegungen(Abrechnung abrechnung) {
-        MonetaryAmount alteÜberzahlung = getAlteÜbezahlung(abrechnung);
-        MonetaryAmount aktuellesSaldo = repository.saldo(abrechnung);
+    public Bewegungen getBewegungen() {
+        MonetaryAmount alteÜberzahlung = getAlteÜbezahlung();
+        MonetaryAmount aktuellesSaldo = abrechnung.getSaldo();
         MonetaryAmount reduziertesSaldo = aktuellesSaldo.subtract(alteÜberzahlung);
         Bewegungen w = new Bewegungen();
         if (reduziertesSaldo.isNegative()) {
@@ -31,8 +38,8 @@ public class Überzahlung implements BewegungenQuelle{
         return w;
     }
 
-    protected MonetaryAmount getAlteÜbezahlung(Abrechnung abrechnung) {
-        Bewegungen alteBuchung = repository.getAktuelleWerte(überzahlungsArt, abrechnung);
+    protected MonetaryAmount getAlteÜbezahlung() {
+        Bewegungen alteBuchung = abrechnung.getAktuelleWerte(überzahlungsArt);
         return alteBuchung.get(überzahlungsKonto);
     }
 

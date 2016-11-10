@@ -1,26 +1,22 @@
 package test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.util.Arrays;
 import java.util.Collection;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameter;
 import org.junit.runners.Parameterized.Parameters;
 
-import entities.TestAbrechnung;
 import repositories.TestProzentualRepository;
-import gebühren.Gebühr;
-import gebühren.ProzentualRepository;
-import gebühren.ProzentualeGebühr;
 import abrechnung.Abrechnung;
-import abrechnung.Repository;
 import betrag.Geld;
 import buchung.Bewegungen;
 import buchung.Konto;
+import entities.TestAbrechnung;
+import gebühren.ProzentualeGebühr;
 
 @RunWith(org.junit.runners.Parameterized.class)
 public class GebührenTest {
@@ -39,10 +35,10 @@ public class GebührenTest {
 
     public void prozentualeGebühr(long betrag, long erwarteteGebühr, long mwst,double prozentsatz) {
         ProzentualeGebühr gebühr = new ProzentualeGebühr(repo, Arten.GEBÜHR,
-                "Gebühr",betragKonto,gebührKonto);
+                "Gebühr",betragKonto,gebührKonto,abrechnung);
         repo.setBetrag(betrag);
         repo.setProzentsatz(prozentsatz);
-        Bewegungen w = gebühr.getBewegungen(abrechnung);
+        Bewegungen w = gebühr.getBewegungen();
         Bewegungen erwartet = getErwarteteWerte(betrag, erwarteteGebühr, mwst);
         assertEquals(erwartet, w);
     }
@@ -51,7 +47,7 @@ public class GebührenTest {
         Bewegungen w = new Bewegungen();
         w.put(betragKonto, Geld.createAmount(betrag / 100.0));
         w.put(gebührKonto, Geld.createAmount(gebühr / 100.0).negate());
-        w.put(repo.getMwstKonto(abrechnung), Geld.createAmount(mwst / 100.0).negate());
+        w.put(abrechnung.getMwstKonto(), Geld.createAmount(mwst / 100.0).negate());
         return w;
     }
 

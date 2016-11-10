@@ -1,24 +1,20 @@
 package feature;
 
-import javax.money.MonetaryAmount;
+import static org.junit.Assert.assertEquals;
 
-import org.junit.Test;
+import javax.money.MonetaryAmount;
 
 import repositories.TestProzentualRepository;
 import test.TestKonto;
-import static org.junit.Assert.*;
-import gebühren.ProzentualeGebühr;
 import abrechnung.Abrechnung;
 import betrag.Geld;
 import buchung.Bewegungen;
 import buchung.Konto;
 import cucumber.api.java.de.Angenommen;
-import cucumber.api.java.de.Gegebensei;
 import cucumber.api.java.de.Dann;
-import cucumber.api.java.de.Wenn;
 import cucumber.api.java.de.Und;
-import cucumber.api.PendingException;
 import entities.TestAbrechnung;
+import gebühren.ProzentualeGebühr;
 
 
 public class ProzentualSteps {
@@ -51,8 +47,8 @@ public class ProzentualSteps {
     @Dann("^ist die Gebühr (\\-{0,1}\\d+\\,{0,1}\\d*)$")
     public void dann_ist_die_Gebühr(double dergebnis) throws Throwable {
         ProzentualeGebühr gebühr = new ProzentualeGebühr(repo, Arten.GEBÜHR,
-                "Gebühr",betragKonto,gebührKonto);
-        Bewegungen w = gebühr.getBewegungen(abrechnung);
+                "Gebühr",betragKonto,gebührKonto,abrechnung);
+        Bewegungen w = gebühr.getBewegungen();
         MonetaryAmount berechnet = w.get(gebührKonto);
         MonetaryAmount ergebnis = Geld.createAmount(dergebnis).negate();
         assertEquals(ergebnis,berechnet);

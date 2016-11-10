@@ -13,20 +13,20 @@ public class ÜberzahlungsÜbertrag extends Überzahlung {
     private Enum<?> übertragsArt;
 
     public ÜberzahlungsÜbertrag(Repository repository, Enum<?> überzahlungsArt,
-            Konto überzahlungsKonto, Enum<?> übertragsArt, Konto übertragsKonto) {
-        super(repository,überzahlungsArt,  überzahlungsKonto);
+            Konto überzahlungsKonto, Enum<?> übertragsArt, Konto übertragsKonto,Abrechnung abrechnung) {
+        super(repository,überzahlungsArt,  überzahlungsKonto,abrechnung);
         this.übertragsKonto = übertragsKonto;
         this.übertragsArt = übertragsArt;
     }
 
     @Override
-    public Abrechnung getRelevanteAbrechnung(Abrechnung abrechnung) {
-        return abrechnung.nächsteAbrechnung();
+    public Abrechnung getRelevanteAbrechnung() {
+        return super.getRelevanteAbrechnung().nächsteAbrechnung();
     }
 
     @Override
-    public Bewegungen getBewegungen(Abrechnung abrechnung) {
-        MonetaryAmount alteÜberzahlung = getAlteÜbezahlung(abrechnung);
+    public Bewegungen getBewegungen() {
+        MonetaryAmount alteÜberzahlung = getAlteÜbezahlung();
         Bewegungen w = new Bewegungen();
         if (!alteÜberzahlung.isZero()) {
             w.put(übertragsKonto, alteÜberzahlung.negate());

@@ -1,6 +1,7 @@
 package betrag;
 
 import java.util.Locale;
+
 import javax.money.CurrencyUnit;
 import javax.money.Monetary;
 import javax.money.MonetaryAmount;

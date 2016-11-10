@@ -11,12 +11,10 @@ import buchung.Bewegungen;
  *
  */
 public interface BewegungenQuelle {
-     Bewegungen getBewegungen(Abrechnung abrechnung);
+     Bewegungen getBewegungen();
      Enum<?> getArt();
      String getBuchungsText();
-     
-     default Abrechnung getRelevanteAbrechnung(Abrechnung abrechnung) {
-         return abrechnung;
-     }
+     Abrechnung getRelevanteAbrechnung();
+  
      
 }

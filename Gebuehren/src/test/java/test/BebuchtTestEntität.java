@@ -1,15 +1,9 @@
 package test;
 
-import java.util.HashMap;
-
 import javax.money.MonetaryAmount;
 
-import org.junit.internal.runners.model.EachTestNotifier;
-
-import bebucht.BebuchteEntit‰t;
 import bebucht.BuchungsRepository;
 import bebucht.Entit‰tMit‹berg‰ngen;
-import bebucht.‹bergang;
 import bebucht.‹bergangsGruppe;
 import buchung.Konto;
 

@@ -1,6 +1,6 @@
 package test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -9,17 +9,12 @@ import org.junit.Test;
 import org.junit.runners.Parameterized.Parameter;
 import org.junit.runners.Parameterized.Parameters;
 
-import entities.TestAbrechnung;
-import gebühren.ProzentualeGebühr;
-import repositories.TestProzentualRepository;
 import repositories.TestRepository;
-import test.GebührenTest.Arten;
-import überzahlungen.Überzahlung;
 import überzahlungen.ÜberzahlungsÜbertrag;
-import abrechnung.Abrechnung;
 import betrag.Geld;
 import buchung.Bewegungen;
 import buchung.Konto;
+import entities.TestAbrechnung;
 
 public class ÜbertragsTest {
     public enum Art {
@@ -28,16 +23,16 @@ public class ÜbertragsTest {
     Konto überzahlungsKonto = new TestKonto(2, "Überzahlung");
     Konto übertragKonto = new TestKonto(2, "Übertag");
     TestRepository repo = new TestRepository();
-    Abrechnung abrechnung;
+    TestAbrechnung abrechnung;
 
     public ÜbertragsTest() {
         abrechnung = new TestAbrechnung(1,repo);
     }
     
     public void testen(double alteÜberzahlung,double erwarteterÜbertrag) {
-        ÜberzahlungsÜbertrag übertrag = new ÜberzahlungsÜbertrag(repo, Art.ÜBERZAHLUNG,überzahlungsKonto,Art.ÜBERTRAG,übertragKonto);
+        ÜberzahlungsÜbertrag übertrag = new ÜberzahlungsÜbertrag(repo, Art.ÜBERZAHLUNG,überzahlungsKonto,Art.ÜBERTRAG,übertragKonto,abrechnung);
         repo.setAktuelleWerte(createWerte(überzahlungsKonto,alteÜberzahlung));
-        Bewegungen w = übertrag.getBewegungen(abrechnung);
+        Bewegungen w = übertrag.getBewegungen();
         Bewegungen erwartet = createWerte(überzahlungsKonto,erwarteterÜbertrag);
         assertEquals(erwartet, w);
     }

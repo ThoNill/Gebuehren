@@ -14,19 +14,26 @@ public class ÜberzahlungsZins implements BewegungenQuelle{
     private Konto ÜberzahlungsKonto;
     private Enum<?> überzahlungsArt;
     private Enum<?> art;
+    private Abrechnung abrechnung;
     
     
-    public ÜberzahlungsZins(ÜberzahlugsRepository repository,Konto ÜberzahlungsKonto,Konto ÜberzahlungsZinsKonto,Enum überzahlungsArt,Enum art) {
+    public ÜberzahlungsZins(ÜberzahlugsRepository repository,Konto ÜberzahlungsKonto,Konto ÜberzahlungsZinsKonto,Enum überzahlungsArt,Enum art,Abrechnung abrechnung) {
         this.repository = repository;
         this.ÜberzahlungsZinsKonto = ÜberzahlungsZinsKonto;
         this.überzahlungsArt = überzahlungsArt;
         this.ÜberzahlungsKonto = ÜberzahlungsKonto;
         this.art = art;
+        this.abrechnung = abrechnung;
+    }
+    
+    @Override
+    public Abrechnung getRelevanteAbrechnung() {
+        return abrechnung;
     }
 
     @Override
-    public Bewegungen getBewegungen(Abrechnung abrechnung) {
-        Bewegungen überzahlung = repository.getAktuelleWerte(überzahlungsArt, abrechnung);
+    public Bewegungen getBewegungen() {
+        Bewegungen überzahlung = abrechnung.getAktuelleWerte(überzahlungsArt);
         Bewegungen w = new Bewegungen();
         MonetaryAmount überzahlungsBetrag = überzahlung.get(ÜberzahlungsKonto);
         if (Geld.absolutGrößer(überzahlungsBetrag,repository.getUntergrenzeFürZinsberechnung())) {

@@ -1,6 +1,7 @@
 package bebucht;
 
 import javax.money.MonetaryAmount;
+
 import betrag.Geld;
 import buchung.Bewegungen;
 import buchung.BuchungsAuftrag;
@@ -39,6 +40,7 @@ public abstract class Entit‰tMit‹berg‰ngen extends Entit‰tMitStatus {
         andereBetr‰ge.add(konto,betrag);
     }
     
+    @Override
     public MonetaryAmount getBetrag(Konto konto) {
         MonetaryAmount betrag = andereBetr‰ge.get(konto);
         if (betrag == null) {

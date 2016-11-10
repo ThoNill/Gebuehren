@@ -7,23 +7,23 @@ import bebucht.Entit‰tMit‹berg‰ngen;
 import bebucht.‹bergangsGruppe;
 import buchung.Konto;
 
-public class TestForderung extends Entit‰tMit‹berg‰ngen {
+public class TestZahlungsEingang extends Entit‰tMit‹berg‰ngen {
     public enum Art {
-        FORDERUNG, GUTSCHRIFT
+        LASTSCHRIFT, GUTSCHRIFT
     }
 
     public enum Status {
         INIT, AKTIV, STORNIERT
     }
 
-    public static Konto rest = new TestKonto(1, "Rest");
-    public static Konto haben = new TestKonto(2, "Haben");
+    public static Konto offen= new TestKonto(1, "Offen");
+    public static Konto zugewiesen = new TestKonto(2, "Zugewiesen");
     public static Konto storniert = new TestKonto(4, "Storniert");
 
-    public TestForderung(Art art, long referenzId, MonetaryAmount betrag,
+    public TestZahlungsEingang(Art art, long referenzId, MonetaryAmount betrag,
             BuchungsRepository repository) {
         super(art, referenzId, betrag, repository, Status.INIT);
-        addBetrag(haben, betrag);
+        addBetrag(zugewiesen, betrag);
         buchen(repository, Buchungsarten.ANLAGE, Buchungsarten.ANLAGE.name()
                 + " angelegt", betrag);
     }
@@ -32,23 +32,19 @@ public class TestForderung extends Entit‰tMit‹berg‰ngen {
     public ‹bergangsGruppe getMˆgliche‹berg‰nge() {
         return new ‹bergangsGruppe()
                 .add‹bergang(Buchungsarten.STORNIEREN, Status.AKTIV,
-                        Status.STORNIERT, rest, storniert)
+                        Status.STORNIERT, offen, storniert)
                 .add‹bergang(Buchungsarten.ANLAGE, Status.INIT, Status.AKTIV,
-                        haben, rest)
+                        zugewiesen, offen)
                 .add‹bergang(Buchungsarten.BEZAHLEN, Status.AKTIV, Status.AKTIV,
-                        rest, haben);
+                        zugewiesen,offen);
     }
 
-    public MonetaryAmount getSoll() {
-        return getBetrag();
+    public MonetaryAmount getZugewiesen() {
+        return getBetrag(zugewiesen);
     }
 
-    public MonetaryAmount getHaben() {
-        return getBetrag(haben);
-    }
-
-    public MonetaryAmount getRest() {
-        return getBetrag(rest);
+    public MonetaryAmount getOffen() {
+        return getBetrag(offen);
     }
 
     public MonetaryAmount getStorniert() {
@@ -57,12 +53,6 @@ public class TestForderung extends Entit‰tMit‹berg‰ngen {
 
     public void bezahlen(BuchungsRepository repository,MonetaryAmount betrag){
         buchen(repository, Buchungsarten.BEZAHLEN, Buchungsarten.BEZAHLEN.name()
-                + " angelegt", betrag);
-        
-    }
-    
-    public void bezahlen(BuchungsRepository repository,TestZahlungsEingang zahlungseingang,MonetaryAmount betrag){
-        buchen(repository, zahlungseingang,Buchungsarten.BEZAHLEN, Buchungsarten.BEZAHLEN.name()
                 + " angelegt", betrag);
         
     }

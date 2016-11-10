@@ -15,11 +15,13 @@ public class TestKonto implements Konto {
         this.name = name;
     }
 
+    @Override
     public int getNummer() {
         return nummer;
     }
 
 
+    @Override
     public String getName() {
         return name;
     }

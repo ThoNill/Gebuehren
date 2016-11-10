@@ -1,25 +1,18 @@
 package feature;
 
+import static org.junit.Assert.assertEquals;
+
 import javax.money.MonetaryAmount;
 
-import org.junit.Test;
-
-import repositories.TestProzentualRepository;
 import repositories.TestÜberzahlungsRepository;
 import test.TestKonto;
 import überzahlungen.ÜberzahlungsZins;
-import static org.junit.Assert.*;
-import gebühren.ProzentualeGebühr;
-import abrechnung.Abrechnung;
 import betrag.Geld;
 import buchung.Bewegungen;
 import buchung.Konto;
 import cucumber.api.java.de.Angenommen;
-import cucumber.api.java.de.Gegebensei;
 import cucumber.api.java.de.Dann;
-import cucumber.api.java.de.Wenn;
 import cucumber.api.java.de.Und;
-import cucumber.api.PendingException;
 import entities.TestAbrechnung;
 
 
@@ -31,7 +24,7 @@ public class ÜberzahlungsZinsSteps {
     Konto zinsKonto = new TestKonto(2, "Zins");
     Konto überzahlungKonto = new TestKonto(3, "Überzahlung aus dem Vormonat");
     TestÜberzahlungsRepository repo = new TestÜberzahlungsRepository();
-    Abrechnung abrechnung;
+    TestAbrechnung abrechnung;
     
    
     public ÜberzahlungsZinsSteps() {
@@ -65,8 +58,8 @@ public class ÜberzahlungsZinsSteps {
 
     @Dann("^ist der Zins (\\-{0,1}\\d+\\,{0,1}\\d*)$")
     public void dann_ist_der_Zins(double dergebnis) throws Throwable {
-        ÜberzahlungsZins zins = new ÜberzahlungsZins(repo,überzahlungKonto, zinsKonto,TestÜberzahlungsRepository.Art.ÜBERZAHLUNG_AUS_DEM_VORMONAT,TestÜberzahlungsRepository.Art.ÜBERZAHLUNGS_ZINS);
-        Bewegungen w = zins.getBewegungen(abrechnung);
+        ÜberzahlungsZins zins = new ÜberzahlungsZins(repo,überzahlungKonto, zinsKonto,TestÜberzahlungsRepository.Art.ÜBERZAHLUNG_AUS_DEM_VORMONAT,TestÜberzahlungsRepository.Art.ÜBERZAHLUNGS_ZINS,abrechnung);
+        Bewegungen w = zins.getBewegungen();
         MonetaryAmount berechnet = w.get(zinsKonto);
         MonetaryAmount ergebnis = Geld.createAmount(dergebnis).negate();
         assertEquals(ergebnis,berechnet);

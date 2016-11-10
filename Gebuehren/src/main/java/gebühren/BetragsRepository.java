@@ -2,9 +2,7 @@ package gebühren;
 
 import javax.money.MonetaryAmount;
 
-import abrechnung.Repository;
-
-public interface BetragsRepository extends Repository{
+public interface BetragsRepository extends MarkierendesRepository{
     MonetaryAmount getBetrag();
    
 }

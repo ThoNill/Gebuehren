@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import bebucht.BebuchteEntität;
-import bebucht.BuchungsAuftragMitEntität;
 import bebucht.BuchungsRepository;
 import buchung.BuchungsAuftrag;
 import buchung.Konto;

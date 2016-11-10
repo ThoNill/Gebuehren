@@ -1,12 +1,12 @@
 package test;
 
-import static org.junit.Assert.*;
+import static betrag.Geld.createAmount;
+import static org.junit.Assert.assertEquals;
 
 import javax.money.MonetaryAmount;
 
 import org.junit.Test;
 
-import static betrag.Geld.*;
 import buchung.AutoMwstKonto;
 import buchung.Bewegungen;
 import buchung.Konto;

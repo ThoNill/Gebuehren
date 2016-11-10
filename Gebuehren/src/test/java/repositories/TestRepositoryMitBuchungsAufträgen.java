@@ -7,25 +7,23 @@ import java.util.List;
 
 import javax.money.MonetaryAmount;
 
-import test.TestKonto;
+import abrechnung.Abrechnung;
 import betrag.Geld;
 import buchung.Bewegungen;
 import buchung.BuchungsAuftrag;
 import buchung.Konto;
-import abrechnung.Abrechnung;
-import abrechnung.Repository;
 
-public class TestRepositoryMitBuchungsAufträgen implements ProzentualRepository{
+public class TestRepositoryMitBuchungsAufträgen implements ProzentualRepository, AktuelleWerteRepository{
     List<BuchungsAuftrag> aufträge = new ArrayList<>();
-    private Konto mwst = new TestKonto(1,"Mwst");
     private MonetaryAmount betrag;
 
     public TestRepositoryMitBuchungsAufträgen(double betrag) {
         this.betrag = Geld.createAmount(betrag); 
     }
 
+   
     @Override
-    public Bewegungen getAktuelleWerte(Enum<?> art, Abrechnung a) {
+    public Bewegungen getAktuelleWerte(Enum<?> art,Abrechnung abrechnung) {
         Bewegungen bewegungen = new Bewegungen();
         for(BuchungsAuftrag b : aufträge) {
             if (art.equals(b.getArt())) {
@@ -54,8 +52,8 @@ public class TestRepositoryMitBuchungsAufträgen implements ProzentualRepository{
         return summe;
     }
 
-    @Override
-    public MonetaryAmount saldo(Abrechnung a) {
+  
+    public MonetaryAmount saldo() {
         MonetaryAmount summe = Geld.getNull();
         for(BuchungsAuftrag b : aufträge) {
             summe = summe.add(b.getWerte().summe());
@@ -71,16 +69,6 @@ public class TestRepositoryMitBuchungsAufträgen implements ProzentualRepository{
     }
 
     @Override
-    public double getMwstSatz(Abrechnung abrechnung) {
-        return 0.19;
-    }
-
-    @Override
-    public Konto getMwstKonto(Abrechnung abrechnung) {
-       return mwst;
-    }
-
-    @Override
     public MonetaryAmount getBetrag() {
        return betrag;
     }
@@ -89,5 +77,13 @@ public class TestRepositoryMitBuchungsAufträgen implements ProzentualRepository{
     public double getGebührenProzentsatz() {
         return 0.03;
     }
+
+
+    @Override
+    public void markieren(Abrechnung abrechnung) {
+    }
+
+
+   
 
 }
