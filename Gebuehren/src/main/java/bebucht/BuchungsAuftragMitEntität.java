@@ -8,13 +8,19 @@ import java.util.Set;
 import buchung.Bewegungen;
 import buchung.BuchungsAuftrag;
 
+/**
+ * 
+ * @author Thomas Nill
+ * 
+ * Ein {@link BuchungsAuftrag} der eine Liste von {@link BebuchteEntität} hält.
+ *
+ */
 public class BuchungsAuftragMitEntität extends BuchungsAuftrag {
     private Set<BebuchteEntität> entitäten;
  
     
     public BuchungsAuftragMitEntität(Enum<?> art, String buchungsText) {
-        super(art, buchungsText, new Bewegungen());
-        this.entitäten = new HashSet<>();
+        this(art, buchungsText, new Bewegungen());
     }
     
     public BuchungsAuftragMitEntität(Enum<?> art, String buchungsText, Bewegungen bewegungen) {

@@ -1,7 +1,6 @@
 package betrag;
 
 import java.util.Locale;
-
 import javax.money.CurrencyUnit;
 import javax.money.Monetary;
 import javax.money.MonetaryAmount;
@@ -10,6 +9,14 @@ import javax.money.MonetaryAmountFactoryQueryBuilder;
 import javax.money.MonetaryRounding;
 import javax.money.format.MonetaryAmountFormat;
 import javax.money.format.MonetaryFormats;
+
+/**
+ * 
+ * @author Thomas Nill
+ * 
+ * Geldbeträge
+ *
+ */
 
 public class Geld {
     private static final CurrencyUnit euro;

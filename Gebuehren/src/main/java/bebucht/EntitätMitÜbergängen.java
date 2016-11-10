@@ -4,34 +4,32 @@ import javax.money.MonetaryAmount;
 
 import betrag.Geld;
 import buchung.Bewegungen;
+import buchung.BuchungsAuftrag;
 import buchung.Konto;
 
-public abstract class EntitätMitÜbergängen extends EntitätMitStatus {
 
-    protected Enum<?> art;
-    protected long referenzId;
-    protected MonetaryAmount betrag;
-    protected Bewegungen andereBeträge;
+/**
+ * 
+ * @author Thomas Nill
+ * 
+ * Eine {@link EntitätMitStatus} die eine Reihe von Beträgen verwaltet.
+ * bei einem {@link Übergang} wir Geld zwischen diesen Beträgen verschoben
+ * und {@link BuchungsAuftrag} erzeugt.
+ * 
+ *
+ */
+public abstract class EntitätMitÜbergängen extends EntitätMitStatus {
+ 
+    private MonetaryAmount betrag;
+    private Bewegungen andereBeträge;
 
     public EntitätMitÜbergängen(Enum<?> art, long referenzId, MonetaryAmount betrag,
             BuchungsRepository repository, Enum<?> initialerStatus) {
-        super(initialerStatus);
-        this.art = art;
-        this.referenzId = referenzId;
+        super(art,referenzId, initialerStatus);
         this.betrag = betrag;
         andereBeträge = new Bewegungen();
-        this.status = initialerStatus;
-    }
+     }
 
-    @Override
-    public long getId() {
-        return referenzId;
-    }
-
-    @Override
-    public Enum<?> getArt() {
-        return art;
-    }
 
     @Override
     public MonetaryAmount getBetrag() {
@@ -99,7 +97,7 @@ public abstract class EntitätMitÜbergängen extends EntitätMitStatus {
             BuchungsAuftragMitEntität auftrag, Übergang übergang,
             MonetaryAmount betrag) {
 
-        if (!status.equals(übergang.getVonStatus())) {
+        if (!getStatus().equals(übergang.getVonStatus())) {
             throw new IllegalArgumentException("Die Entität " + this
                     + " ist im falschen Status");
         }

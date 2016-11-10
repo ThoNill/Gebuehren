@@ -2,6 +2,14 @@ package bebucht;
 
 import buchung.Konto;
 
+/**
+ * 
+ * @author Thomas Nill
+ * 
+ * Eine Übergang einer {@link BebuchteEntität} bei dem ein Statuswechsel und eine Betragsverschiebung
+ * stattfindet.
+ *
+ */
 public class Übergang {
     private Enum<?> art;
     private Enum<?> vonStatus;

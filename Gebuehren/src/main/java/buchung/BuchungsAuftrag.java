@@ -1,8 +1,5 @@
 package buchung;
 
-
-
-
 public class BuchungsAuftrag extends BuchungsartUndText {
     private Bewegungen bewegungen;
     

@@ -7,6 +7,7 @@ import bebucht.BuchungsAuftragMitEntit‰t;
 import bebucht.BuchungsRepository;
 import bebucht.Entit‰tMit‹berg‰ngen;
 import betrag.Geld;
+import buchung.BuchungsAuftrag;
 
 public class BebuchtTest {
 
@@ -23,7 +24,7 @@ public class BebuchtTest {
         
         assertEquals(Geld.createAmount(20),auftrag.getSoll());
         
-        BuchungsAuftragMitEntit‰t buchung = repository.getBuchungen().get(0);
+        BuchungsAuftrag buchung = repository.getBuchungen().get(0);
         assertEquals(Geld.createAmount(20),buchung.getWerte().get(new TestKonto(20, "Soll")));
        
     }
