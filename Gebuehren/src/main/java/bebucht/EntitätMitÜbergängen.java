@@ -1,7 +1,6 @@
 package bebucht;
 
 import javax.money.MonetaryAmount;
-
 import betrag.Geld;
 import buchung.Bewegungen;
 import buchung.BuchungsAuftrag;
@@ -30,19 +29,16 @@ public abstract class Entit‰tMit‹berg‰ngen extends Entit‰tMitStatus {
         andereBetr‰ge = new Bewegungen();
      }
 
-
     @Override
     public MonetaryAmount getBetrag() {
         return betrag;
     }
-
+    
     @Override
     public void addBetrag(Konto konto, MonetaryAmount betrag) {
-        MonetaryAmount bisher = andereBetr‰ge.get(konto);
-        MonetaryAmount summe = bisher.add(betrag);
-        andereBetr‰ge.put(konto, summe);
+        andereBetr‰ge.add(konto,betrag);
     }
-
+    
     public MonetaryAmount getBetrag(Konto konto) {
         MonetaryAmount betrag = andereBetr‰ge.get(konto);
         if (betrag == null) {
@@ -50,6 +46,7 @@ public abstract class Entit‰tMit‹berg‰ngen extends Entit‰tMitStatus {
         }
         return betrag;
     }
+
 
     protected void buchen(BuchungsRepository repository, Enum<?> art,
             String buchungsText, MonetaryAmount betrag) {
