@@ -3,10 +3,8 @@ package gebühren;
 import javax.money.MonetaryAmount;
 
 import abrechnung.Abrechnung;
-import beans.Geld;
-import beans.Konto;
-import beans.Bewegungen;
-import beans.impl.AutoMwstKonto;
+import buchung.Bewegungen;
+import buchung.Konto;
 
 public abstract class BetragsabhängigeGebühr<REPO extends BetragsRepository> extends EinfacheGebühr<REPO> {
 
@@ -20,6 +18,7 @@ public abstract class BetragsabhängigeGebühr<REPO extends BetragsRepository> ext
     protected abstract MonetaryAmount getGebühr(REPO repository, Abrechnung abrechnung,MonetaryAmount betrag);
     
     
+    @Override
     protected MonetaryAmount getGebühr(REPO repository,Abrechnung abrechnung)  {
         MonetaryAmount betrag = repository.getBetrag();
         return getGebühr(repository, abrechnung,betrag);

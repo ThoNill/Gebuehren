@@ -3,10 +3,10 @@ package test;
 import java.util.ArrayList;
 import java.util.List;
 
-import beans.Konto;
 import bebucht.BebuchteEntität;
 import bebucht.BuchungsAuftragMitEntität;
 import bebucht.BuchungsRepository;
+import buchung.Konto;
 
 public class BebuchungsTestRepository implements BuchungsRepository{
     private static final Konto konto = new TestKonto(1,"Konto");

@@ -2,7 +2,7 @@ package bebucht;
 
 import javax.money.MonetaryAmount;
 
-import beans.Konto;
+import buchung.Konto;
 
 public interface BebuchteEntität {
         long getId();

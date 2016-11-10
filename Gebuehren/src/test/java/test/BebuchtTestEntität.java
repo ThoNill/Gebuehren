@@ -6,12 +6,12 @@ import javax.money.MonetaryAmount;
 
 import org.junit.internal.runners.model.EachTestNotifier;
 
-import beans.Konto;
 import bebucht.BebuchteEntit‰t;
 import bebucht.BuchungsRepository;
 import bebucht.Entit‰tMit‹berg‰ngen;
 import bebucht.‹bergang;
 import bebucht.‹bergangsGruppe;
+import buchung.Konto;
 
 public class BebuchtTestEntit‰t extends Entit‰tMit‹berg‰ngen {
     public enum Art {

@@ -1,10 +1,12 @@
-package beans;
+package buchung;
 
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
 import javax.money.MonetaryAmount;
+
+import betrag.Geld;
 
 public class Bewegungen extends HashMap<Konto, MonetaryAmount> {
 
@@ -55,6 +57,7 @@ public class Bewegungen extends HashMap<Konto, MonetaryAmount> {
     }
     
 
+    @Override
     public MonetaryAmount put(Konto konto, MonetaryAmount amount) {
         if (konto.hasErgänzung()) {
             Bewegungen bewegungen = konto.ergänzen(amount);

@@ -1,6 +1,6 @@
 package abrechnung;
 
-import beans.Bewegungen;
+import buchung.Bewegungen;
 
 /**
  * 

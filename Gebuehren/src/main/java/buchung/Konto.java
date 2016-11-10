@@ -1,4 +1,4 @@
-package beans;
+package buchung;
 
 import javax.money.MonetaryAmount;
 

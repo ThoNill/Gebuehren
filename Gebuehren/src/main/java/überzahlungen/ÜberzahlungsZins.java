@@ -4,9 +4,9 @@ import javax.money.MonetaryAmount;
 
 import abrechnung.Abrechnung;
 import abrechnung.BewegungenQuelle;
-import beans.Geld;
-import beans.Konto;
-import beans.Bewegungen;
+import betrag.Geld;
+import buchung.Bewegungen;
+import buchung.Konto;
 
 public class ÜberzahlungsZins implements BewegungenQuelle{
     private ÜberzahlugsRepository repository;

@@ -9,8 +9,8 @@ import gebühren.ProzentualeGebühr;
 import repositories.TestRepositoryMitBuchungsAufträgen;
 import überzahlungen.Überzahlung;
 import abrechnung.Abrechnung;
-import beans.Geld;
-import beans.Konto;
+import betrag.Geld;
+import buchung.Konto;
 
 public class AbrechnungsTest {
     public enum Arten {

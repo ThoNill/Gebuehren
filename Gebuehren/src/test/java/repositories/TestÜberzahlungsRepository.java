@@ -2,7 +2,7 @@ package repositories;
 
 import javax.money.MonetaryAmount;
 
-import beans.Geld;
+import betrag.Geld;
 import überzahlungen.ÜberzahlugsRepository;
 
 

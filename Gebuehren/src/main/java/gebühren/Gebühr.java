@@ -1,7 +1,7 @@
 package gebühren;
 
 import abrechnung.Abrechnung;
-
+import abrechnung.BewegungenQuelle;
 /**
  * 
  * @author Thomas Nill
@@ -11,8 +11,7 @@ import abrechnung.Abrechnung;
  *
  */
 import abrechnung.Repository;
-import abrechnung.BewegungenQuelle;
-import beans.Bewegungen;
+import buchung.Bewegungen;
 
 public abstract class Gebühr<REPO extends Repository> implements BewegungenQuelle {
     private REPO repository;

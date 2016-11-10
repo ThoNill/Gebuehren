@@ -2,10 +2,9 @@ package abrechnung;
 
 import javax.money.MonetaryAmount;
 
-import beans.BuchungsAuftrag;
-import beans.BuchungsartUndText;
-import beans.Konto;
-import beans.Bewegungen;
+import buchung.Bewegungen;
+import buchung.BuchungsAuftrag;
+import buchung.Konto;
 
 public interface Repository {
     Bewegungen getAktuelleWerte(Enum<?> art,Abrechnung a);

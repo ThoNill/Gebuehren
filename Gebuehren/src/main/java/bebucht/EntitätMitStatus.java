@@ -1,6 +1,5 @@
 package bebucht;
 
-import javax.money.MonetaryAmount;
 
 public abstract class EntitätMitStatus implements BebuchteEntität{
     protected  Enum<?> status;

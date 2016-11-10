@@ -3,10 +3,10 @@ package überzahlungen;
 import javax.money.MonetaryAmount;
 
 import abrechnung.Abrechnung;
-import abrechnung.Repository;
 import abrechnung.BewegungenQuelle;
-import beans.Konto;
-import beans.Bewegungen;
+import abrechnung.Repository;
+import buchung.Bewegungen;
+import buchung.Konto;
 
 public class Überzahlung implements BewegungenQuelle{
     private Repository repository;

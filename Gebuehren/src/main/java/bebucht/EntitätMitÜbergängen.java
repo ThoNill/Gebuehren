@@ -1,14 +1,10 @@
 package bebucht;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.money.MonetaryAmount;
 
-import beans.BuchungsAuftrag;
-import beans.Geld;
-import beans.Konto;
-import beans.Bewegungen;
+import betrag.Geld;
+import buchung.Bewegungen;
+import buchung.Konto;
 
 public abstract class Entit‰tMit‹berg‰ngen extends Entit‰tMitStatus {
 

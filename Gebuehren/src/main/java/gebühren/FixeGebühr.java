@@ -3,8 +3,7 @@ package gebühren;
 import javax.money.MonetaryAmount;
 
 import abrechnung.Abrechnung;
-import beans.Konto;
-import beans.Bewegungen;
+import buchung.Konto;
 
 public class FixeGebühr extends EinfacheGebühr<FixeGebührRepository> {
     protected Konto gebührenKonto;

@@ -1,4 +1,4 @@
-package beans;
+package betrag;
 
 import java.util.Locale;
 

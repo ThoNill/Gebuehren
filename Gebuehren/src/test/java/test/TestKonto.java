@@ -2,8 +2,8 @@ package test;
 
 import javax.money.MonetaryAmount;
 
-import beans.Konto;
-import beans.Bewegungen;
+import buchung.Bewegungen;
+import buchung.Konto;
 
 public class TestKonto implements Konto {
     private int nummer;

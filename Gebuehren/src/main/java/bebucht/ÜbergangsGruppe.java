@@ -2,7 +2,7 @@ package bebucht;
 
 import java.util.HashSet;
 
-import beans.Konto;
+import buchung.Konto;
 
 public class ÜbergangsGruppe extends HashSet<Übergang> {
 

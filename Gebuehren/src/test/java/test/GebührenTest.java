@@ -18,9 +18,9 @@ import gebühren.ProzentualRepository;
 import gebühren.ProzentualeGebühr;
 import abrechnung.Abrechnung;
 import abrechnung.Repository;
-import beans.Geld;
-import beans.Konto;
-import beans.Bewegungen;
+import betrag.Geld;
+import buchung.Bewegungen;
+import buchung.Konto;
 
 @RunWith(org.junit.runners.Parameterized.class)
 public class GebührenTest {

@@ -5,11 +5,11 @@ import javax.money.MonetaryAmount;
 import test.TestKonto;
 import abrechnung.Abrechnung;
 import abrechnung.Repository;
-import beans.BuchungsAuftrag;
-import beans.BuchungsartUndText;
-import beans.Geld;
-import beans.Konto;
-import beans.Bewegungen;
+import betrag.Geld;
+import buchung.Bewegungen;
+import buchung.BuchungsAuftrag;
+import buchung.BuchungsartUndText;
+import buchung.Konto;
 import gebühren.FixeGebührRepository;
 import gebühren.ProzentualRepository;
 

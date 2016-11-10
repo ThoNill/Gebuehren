@@ -8,10 +8,10 @@ import java.util.List;
 import javax.money.MonetaryAmount;
 
 import test.TestKonto;
-import beans.BuchungsAuftrag;
-import beans.Geld;
-import beans.Konto;
-import beans.Bewegungen;
+import betrag.Geld;
+import buchung.Bewegungen;
+import buchung.BuchungsAuftrag;
+import buchung.Konto;
 import abrechnung.Abrechnung;
 import abrechnung.Repository;
 

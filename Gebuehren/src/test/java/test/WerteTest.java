@@ -6,10 +6,10 @@ import javax.money.MonetaryAmount;
 
 import org.junit.Test;
 
-import static beans.Geld.*;
-import beans.Konto;
-import beans.Bewegungen;
-import beans.impl.AutoMwstKonto;
+import static betrag.Geld.*;
+import buchung.AutoMwstKonto;
+import buchung.Bewegungen;
+import buchung.Konto;
 
 public class WerteTest {
 

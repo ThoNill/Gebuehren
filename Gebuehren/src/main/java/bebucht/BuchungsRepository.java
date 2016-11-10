@@ -1,6 +1,6 @@
 package bebucht;
 
-import beans.Konto;
+import buchung.Konto;
 
 public interface BuchungsRepository {
     Konto getSachKonto(BebuchteEntität entität);

@@ -3,8 +3,8 @@ package gebühren;
 import javax.money.MonetaryAmount;
 
 import abrechnung.Abrechnung;
-import beans.Geld;
-import beans.Konto;
+import betrag.Geld;
+import buchung.Konto;
 
 public class ProzentualeGebühr extends BetragsabhängigeGebühr<ProzentualRepository> {
     

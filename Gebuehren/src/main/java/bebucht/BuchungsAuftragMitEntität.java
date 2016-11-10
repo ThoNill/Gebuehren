@@ -5,8 +5,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import beans.BuchungsAuftrag;
-import beans.Bewegungen;
+import buchung.Bewegungen;
+import buchung.BuchungsAuftrag;
 
 public class BuchungsAuftragMitEntität extends BuchungsAuftrag {
     private Set<BebuchteEntität> entitäten;

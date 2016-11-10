@@ -1,6 +1,6 @@
 package bebucht;
 
-import beans.Konto;
+import buchung.Konto;
 
 public class Übergang {
     private Enum<?> art;

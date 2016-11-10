@@ -2,11 +2,11 @@ package gebühren;
 
 import javax.money.MonetaryAmount;
 
-import beans.Konto;
-import beans.Bewegungen;
-import beans.impl.AutoMwstKonto;
 import abrechnung.Abrechnung;
 import abrechnung.Repository;
+import buchung.AutoMwstKonto;
+import buchung.Bewegungen;
+import buchung.Konto;
 
 public abstract class EinfacheGebühr<REPO extends Repository> extends  Gebühr<REPO> {
 

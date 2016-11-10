@@ -1,9 +1,11 @@
 package test;
 
 import static org.junit.Assert.*;
+
 import org.junit.Test;
-import beans.Konto;
-import beans.impl.AutoMwstKonto;
+
+import buchung.AutoMwstKonto;
+import buchung.Konto;
 
 public class AutoMwstKontoTest {
 

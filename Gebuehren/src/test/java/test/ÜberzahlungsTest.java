@@ -16,9 +16,9 @@ import repositories.TestRepository;
 import test.GebührenTest.Arten;
 import überzahlungen.Überzahlung;
 import abrechnung.Abrechnung;
-import beans.Geld;
-import beans.Konto;
-import beans.Bewegungen;
+import betrag.Geld;
+import buchung.Bewegungen;
+import buchung.Konto;
 
 public class ÜberzahlungsTest {
     public enum Art {

@@ -3,10 +3,10 @@ package test;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
-import beans.Geld;
 import bebucht.BuchungsAuftragMitEntit‰t;
 import bebucht.BuchungsRepository;
 import bebucht.Entit‰tMit‹berg‰ngen;
+import betrag.Geld;
 
 public class BebuchtTest {
 

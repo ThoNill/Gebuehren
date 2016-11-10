@@ -1,4 +1,4 @@
-package beans;
+package buchung;
 
 public class BuchungsartUndText {
 

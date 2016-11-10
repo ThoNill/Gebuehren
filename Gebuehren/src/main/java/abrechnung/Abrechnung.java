@@ -3,8 +3,8 @@ package abrechnung;
 import java.util.ArrayList;
 import java.util.List;
 
-import beans.BuchungsAuftrag;
-import beans.Bewegungen;
+import buchung.Bewegungen;
+import buchung.BuchungsAuftrag;
 
 /**
  * 

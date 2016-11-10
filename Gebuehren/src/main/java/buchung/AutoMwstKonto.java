@@ -1,12 +1,8 @@
-package beans.impl;
-
-import java.io.ObjectOutputStream.PutField;
+package buchung;
 
 import javax.money.MonetaryAmount;
 
-import beans.Geld;
-import beans.Konto;
-import beans.Bewegungen;
+import betrag.Geld;
 
 public class AutoMwstKonto implements Konto {
     private Konto original;

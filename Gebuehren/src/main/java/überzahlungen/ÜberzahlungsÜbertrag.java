@@ -4,9 +4,8 @@ import javax.money.MonetaryAmount;
 
 import abrechnung.Abrechnung;
 import abrechnung.Repository;
-import abrechnung.BewegungenQuelle;
-import beans.Konto;
-import beans.Bewegungen;
+import buchung.Bewegungen;
+import buchung.Konto;
 
 public class ‹berzahlungs‹bertrag extends ‹berzahlung {
 
