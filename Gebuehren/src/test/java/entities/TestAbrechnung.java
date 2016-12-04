@@ -7,9 +7,10 @@ import test.TestKonto;
 import abrechnung.Abrechnung;
 import betrag.Geld;
 import buchung.Bewegungen;
+import buchung.BuchungsAuftrag;
 import buchung.Konto;
 
-public class TestAbrechnung extends Abrechnung {
+public class TestAbrechnung implements Abrechnung {
     private int nummer;
     private MonetaryAmount saldo = Geld.getNull();
     private Konto mwst = new TestKonto(1, "Mwst");
@@ -18,10 +19,10 @@ public class TestAbrechnung extends Abrechnung {
   
 
     public TestAbrechnung(int nummer, AktuelleWerteRepository repository) {
-        super(repository);
+        super();
         this.nummer = nummer;
         this.repository = repository;
-    }
+  }
     
     @Override
     public Bewegungen getAktuelleWerte(Enum art) {
@@ -30,13 +31,10 @@ public class TestAbrechnung extends Abrechnung {
     
     @Override
     public Abrechnung nächsteAbrechnung() {
-        return new TestAbrechnung(nummer + 1, getRepository());
+        return new TestAbrechnung(nummer + 1,repository);
     }
     
-    @Override
-    public AktuelleWerteRepository getRepository() {
-        return repository;
-    }
+  
 
     public int getNummer() {
         return nummer;
@@ -90,6 +88,12 @@ public class TestAbrechnung extends Abrechnung {
     @Override
     public double getMwstSatz() {
         return mwstSatz;
+    }
+
+    @Override
+    public void insertBuchung(BuchungsAuftrag auftrag) {
+        repository.insertBuchung(auftrag);
+        
     }
 
 }

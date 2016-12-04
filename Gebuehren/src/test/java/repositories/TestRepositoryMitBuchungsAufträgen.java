@@ -63,7 +63,7 @@ public class TestRepositoryMitBuchungsAufträgen implements ProzentualRepository,
     }
 
     @Override
-    public void insertBuchung(Abrechnung abrechnung, BuchungsAuftrag auftrag) {
+    public void insertBuchung(BuchungsAuftrag auftrag) {
        aufträge.add(auftrag);
         
     }

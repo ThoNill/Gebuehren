@@ -1,9 +1,10 @@
 package repositories;
 
 import abrechnung.Abrechnung;
-import abrechnung.Repository;
 import buchung.Bewegungen;
+import buchung.BuchungsAuftrag;
 
-public interface AktuelleWerteRepository extends Repository {
+public interface AktuelleWerteRepository {
     Bewegungen getAktuelleWerte(Enum<?> art,Abrechnung abrechnung);
+    void insertBuchung(BuchungsAuftrag auftrag);
 }

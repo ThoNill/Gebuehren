@@ -2,9 +2,7 @@ package überzahlungen;
 
 import javax.money.MonetaryAmount;
 
-import abrechnung.Repository;
-
-public interface ÜberzahlugsRepository extends Repository{
+public interface ÜberzahlugsRepository {
 
     double getÜberzahlungsZins();
 

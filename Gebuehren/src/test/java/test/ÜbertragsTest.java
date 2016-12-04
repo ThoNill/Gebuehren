@@ -30,7 +30,7 @@ public class ÜbertragsTest {
     }
     
     public void testen(double alteÜberzahlung,double erwarteterÜbertrag) {
-        ÜberzahlungsÜbertrag übertrag = new ÜberzahlungsÜbertrag(repo, Art.ÜBERZAHLUNG,überzahlungsKonto,Art.ÜBERTRAG,übertragKonto,abrechnung);
+        ÜberzahlungsÜbertrag übertrag = new ÜberzahlungsÜbertrag(Art.ÜBERZAHLUNG,überzahlungsKonto,Art.ÜBERTRAG,übertragKonto,abrechnung);
         repo.setAktuelleWerte(createWerte(überzahlungsKonto,alteÜberzahlung));
         Bewegungen w = übertrag.getBewegungen();
         Bewegungen erwartet = createWerte(überzahlungsKonto,erwarteterÜbertrag);

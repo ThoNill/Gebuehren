@@ -4,18 +4,15 @@ import javax.money.MonetaryAmount;
 
 import abrechnung.Abrechnung;
 import abrechnung.BewegungenQuelle;
-import abrechnung.Repository;
 import buchung.Bewegungen;
 import buchung.Konto;
 
 public class Überzahlung implements BewegungenQuelle{
-    private Repository repository;
     private Konto überzahlungsKonto;
     private Enum<?> überzahlungsArt;
     private Abrechnung abrechnung;
     
-    public Überzahlung(Repository repository,Enum überzahlungsArt,Konto überzahlungsKonto,Abrechnung abrechnung) {
-        this.repository = repository;
+    public Überzahlung(Enum überzahlungsArt,Konto überzahlungsKonto,Abrechnung abrechnung) {
         this.überzahlungsKonto = überzahlungsKonto;
         this.überzahlungsArt = überzahlungsArt;
         this.abrechnung = abrechnung;

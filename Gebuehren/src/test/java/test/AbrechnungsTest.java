@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import repositories.TestRepositoryMitBuchungsAufträgen;
 import überzahlungen.Überzahlung;
+import abrechnung.AbrechnungsAblauf;
 import betrag.Geld;
 import buchung.Konto;
 import entities.TestAbrechnung;
@@ -22,17 +23,19 @@ public class AbrechnungsTest {
     
     TestRepositoryMitBuchungsAufträgen repo = new TestRepositoryMitBuchungsAufträgen(200.0);
     TestAbrechnung abrechnung;
+    AbrechnungsAblauf ablauf;
     
     public AbrechnungsTest() {
         abrechnung = new TestAbrechnung(1,repo);
+        ablauf = new AbrechnungsAblauf();
     }
 
     @Test
     public void testen() {
-        abrechnung.add(new ProzentualeGebühr(repo, Arten.GEBÜHR,"Test",betragKonto,gebührKonto,abrechnung));
-        abrechnung.add(new Überzahlung(repo, Arten.ÜBERZAHLUNG, überzahlung,abrechnung));
+        ablauf.add(new ProzentualeGebühr(repo, Arten.GEBÜHR,"Test",betragKonto,gebührKonto,abrechnung));
+        ablauf.add(new Überzahlung(Arten.ÜBERZAHLUNG, überzahlung,abrechnung));
         
-        abrechnung.abrechnen();
+        ablauf.abrechnen();
         
         System.out.println(repo.saldo());
         
@@ -40,7 +43,7 @@ public class AbrechnungsTest {
         assertEquals(Geld.createAmount(-200.0 * repo.getGebührenProzentsatz()),repo.getAktuelleWerte(gebührKonto));
         assertEquals(Geld.createAmount(0.0),repo.getAktuelleWerte(überzahlung));
         
-        abrechnung.abrechnen();
+        ablauf.abrechnen();
  
         assertEquals(Geld.createAmount(200.0),repo.getAktuelleWerte(betragKonto));
         assertEquals(Geld.createAmount(-200.0 * repo.getGebührenProzentsatz()),repo.getAktuelleWerte(gebührKonto));

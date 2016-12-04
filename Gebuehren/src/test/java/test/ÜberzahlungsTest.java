@@ -30,7 +30,7 @@ public class ÜberzahlungsTest {
     }
     
     public void testen(double neuesSaldo,double alteÜberzahlung,double erwarteteÜberzahlung) {
-        Überzahlung überzahlung = new Überzahlung(repo, Art.ÜBERZAHLUNG,überzahlungsKonto,abrechnung);
+        Überzahlung überzahlung = new Überzahlung(Art.ÜBERZAHLUNG,überzahlungsKonto,abrechnung);
         abrechnung.setSaldo(Geld.createAmount(neuesSaldo));
         repo.setAktuelleWerte(createWerte(überzahlungsKonto,alteÜberzahlung));
         Bewegungen w = überzahlung.getBewegungen();

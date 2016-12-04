@@ -2,7 +2,6 @@ package bebucht;
 
 import javax.money.MonetaryAmount;
 
-import abrechnung.Repository;
 import buchung.Konto;
 /**
  * 
@@ -12,7 +11,7 @@ import buchung.Konto;
  * ein Zahlungseingang Bezahlt, zugeordnet, offen.
  * 
  * Bei einem {@link Übergang} wechselt ein Geldbetrag seine Position innerhalb diese Beträge.
- * Bei jedem {@link Übergang} wird auch ein {@link Buchungsauftrag} erzeugt, der in ein {@link Repository}
+ * Bei jedem {@link Übergang} wird auch ein {@link Buchungsauftrag} erzeugt, der in ein  Repository
  * eingetragen werden kann.
  * 
  */

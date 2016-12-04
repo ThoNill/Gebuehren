@@ -3,7 +3,6 @@ package überzahlungen;
 import javax.money.MonetaryAmount;
 
 import abrechnung.Abrechnung;
-import abrechnung.Repository;
 import buchung.Bewegungen;
 import buchung.Konto;
 
@@ -12,9 +11,9 @@ public class ÜberzahlungsÜbertrag extends Überzahlung {
     private Konto übertragsKonto;
     private Enum<?> übertragsArt;
 
-    public ÜberzahlungsÜbertrag(Repository repository, Enum<?> überzahlungsArt,
+    public ÜberzahlungsÜbertrag(Enum<?> überzahlungsArt,
             Konto überzahlungsKonto, Enum<?> übertragsArt, Konto übertragsKonto,Abrechnung abrechnung) {
-        super(repository,überzahlungsArt,  überzahlungsKonto,abrechnung);
+        super(überzahlungsArt,  überzahlungsKonto,abrechnung);
         this.übertragsKonto = übertragsKonto;
         this.übertragsArt = übertragsArt;
     }
