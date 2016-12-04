@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import repositories.TestRepositoryMitBuchungsAufträgen;
 import überzahlungen.Überzahlung;
-import abrechnung.AbrechnungsAblauf;
+import abrechnung.AbrechnungsLauf;
 import betrag.Geld;
 import buchung.Konto;
 import entities.TestAbrechnung;
@@ -23,11 +23,11 @@ public class AbrechnungsTest {
     
     TestRepositoryMitBuchungsAufträgen repo = new TestRepositoryMitBuchungsAufträgen(200.0);
     TestAbrechnung abrechnung;
-    AbrechnungsAblauf ablauf;
+    AbrechnungsLauf ablauf;
     
     public AbrechnungsTest() {
         abrechnung = new TestAbrechnung(1,repo);
-        ablauf = new AbrechnungsAblauf();
+        ablauf = new AbrechnungsLauf();
     }
 
     @Test

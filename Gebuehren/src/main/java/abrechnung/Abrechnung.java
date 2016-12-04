@@ -10,9 +10,7 @@ import buchung.Konto;
  * 
  * @author Thomas Nill
  * 
- * Eine Abrechnung ist eine Liste von BewegungenQuelle, die beim Abrechnen eine Reihe von Buchungen erzeugen.
- * Jede BewegungenQuelle erzeugt eine Buchung. Diese wird mit eventuell schon vorhandenen Buchungen desselben Typs
- * verglichen. Dann wird die Differenz zwischen Soll und Istzustand gebucht.
+ * Eine Abrechnung ist ein zeitlich abgegrenzter Bereich. Übernimmt die Aufgabe eines Repository
  *
  */
 public interface Abrechnung {

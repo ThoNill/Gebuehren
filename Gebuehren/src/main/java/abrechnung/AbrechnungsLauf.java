@@ -10,16 +10,16 @@ import buchung.BuchungsAuftrag;
  * 
  * @author Thomas Nill
  * 
- * Eine Abrechnung ist eine Liste von BewegungenQuelle, die beim Abrechnen eine Reihe von Buchungen erzeugen.
+ * Ein AbrechnungLauf ist eine Liste von BewegungenQuelle, die beim Abrechnen eine Reihe von Buchungen erzeugen.
  * Jede BewegungenQuelle erzeugt eine Buchung. Diese wird mit eventuell schon vorhandenen Buchungen desselben Typs
  * verglichen. Dann wird die Differenz zwischen Soll und Istzustand gebucht.
  *
  */
-public class AbrechnungsAblauf {
+public class AbrechnungsLauf {
     private List<BewegungenQuelle> quellen = new ArrayList<>();
    
 
-    public AbrechnungsAblauf() {
+    public AbrechnungsLauf() {
         super();
     }
     
