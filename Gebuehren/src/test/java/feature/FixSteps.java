@@ -33,12 +33,12 @@ public class FixSteps {
     }
 
     @Angenommen("^die fixe Gebühr ist (\\-{0,1}\\d+)$")
-    public void die_fixe_Gebühr_ist(double dergebnis) throws Throwable {
+    public void die_fixe_Gebühr_ist(double dergebnis)  {
         repo.setGebühr(Geld.createAmount(dergebnis));
     }
 
     @Dann("^ist die Gebühr eben (\\-{0,1}\\d+\\,{0,1}\\d*)$")
-    public void dann_ist_die_Gebühr_eben(double dergebnis) throws Throwable {
+    public void dann_ist_die_Gebühr_eben(double dergebnis) {
         FixeGebühr gebühr = new FixeGebühr(repo, Arten.GEBÜHR,
                 "Gebühr",gebührKonto,abrechnung);
         Bewegungen w = gebühr.getBewegungen();

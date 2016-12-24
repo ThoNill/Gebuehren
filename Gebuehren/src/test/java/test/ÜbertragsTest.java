@@ -40,7 +40,7 @@ public class ÜbertragsTest {
     
     private Bewegungen createWerte(Konto konto,double betrag) {
         Bewegungen w = new Bewegungen();
-        if(betrag != 0.0) {
+        if(Math.abs(betrag) >= 0.004) {
             w.put(konto,Geld.createAmount(betrag));
         }
         return w;

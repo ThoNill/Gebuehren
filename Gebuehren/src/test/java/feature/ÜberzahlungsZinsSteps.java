@@ -34,22 +34,22 @@ public class ÜberzahlungsZinsSteps {
     }
 
     @Angenommen("^der Zins für Überzahlungen ist (\\-{0,1}\\d+) %$")
-    public void der_zinssatz_ist(double zins) throws Throwable {
+    public void der_zinssatz_ist(double zins) {
         repo.setÜberzahlungsZins(zins/100.0);
     }
 
     @Und("^die Untergrenze für die Berechnung von Zinsen ist (\\-{0,1}\\d+\\,{0,1}\\d*)$")
-    public void die_Untergrenze_für_Beträge_ist(long betrag) throws Throwable {
+    public void die_Untergrenze_für_Beträge_ist(long betrag) {
         repo.setUntergrenzeFürZinsberechnung(Geld.createAmount(betrag));
     }
     
     @Und("Zinsen unter (\\-{0,1}\\d+\\,{0,1}\\d*) werden nicht berücksichtigt$")
-     public void der_minimale_Zins_ist(long betrag) throws Throwable {
+     public void der_minimale_Zins_ist(long betrag) {
         repo.setMinimalerÜberzahlungsZins(Geld.createAmount(betrag));
     }
 
     @Und("^die Überzahlung ist (\\-{0,1}\\d+\\,{0,1}\\d*)$")
-    public void die_Überzahlung_ist(long betrag) throws Throwable {
+    public void die_Überzahlung_ist(long betrag) {
         Bewegungen w = new Bewegungen();
         w.putIfAbsent(überzahlungKonto,Geld.createAmount(betrag));
         repo.setAktuelleWerte(w);
@@ -57,7 +57,7 @@ public class ÜberzahlungsZinsSteps {
 
 
     @Dann("^ist der Zins (\\-{0,1}\\d+\\,{0,1}\\d*)$")
-    public void dann_ist_der_Zins(double dergebnis) throws Throwable {
+    public void dann_ist_der_Zins(double dergebnis) {
         ÜberzahlungsZins zins = new ÜberzahlungsZins(repo,überzahlungKonto, zinsKonto,TestÜberzahlungsRepository.Art.ÜBERZAHLUNG_AUS_DEM_VORMONAT,TestÜberzahlungsRepository.Art.ÜBERZAHLUNGS_ZINS,abrechnung);
         Bewegungen w = zins.getBewegungen();
         MonetaryAmount berechnet = w.get(zinsKonto);
