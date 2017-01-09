@@ -20,9 +20,9 @@ public class BebuchtTestEntit‰t extends Entit‰tMit‹berg‰ngen {
         ANLAGE, STORNIEREN
     }
 
-    public static Konto init = new TestKonto(10, "Init");
-    public static Konto soll = new TestKonto(20, "Soll");
-    public static Konto storniert = new TestKonto(30, "Storniert");
+    public static final Konto init = new TestKonto(10, "Init");
+    public static final Konto soll = new TestKonto(20, "Soll");
+    public static final Konto storniert = new TestKonto(30, "Storniert");
 
     public BebuchtTestEntit‰t(Art art, long referenzId, MonetaryAmount betrag,
             BuchungsRepository repository) {

@@ -16,9 +16,9 @@ public class TestForderung extends Entit‰tMit‹berg‰ngen {
         INIT, AKTIV, STORNIERT
     }
 
-    public static Konto rest = new TestKonto(1, "Rest");
-    public static Konto haben = new TestKonto(2, "Haben");
-    public static Konto storniert = new TestKonto(4, "Storniert");
+    public static final Konto rest = new TestKonto(1, "Rest");
+    public static final Konto haben = new TestKonto(2, "Haben");
+    public static final Konto storniert = new TestKonto(4, "Storniert");
 
     public TestForderung(Art art, long referenzId, MonetaryAmount betrag,
             BuchungsRepository repository) {

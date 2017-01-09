@@ -16,9 +16,9 @@ public class TestZahlungsEingang extends Entit‰tMit‹berg‰ngen {
         INIT, AKTIV, STORNIERT
     }
 
-    public static Konto offen= new TestKonto(1, "Offen");
-    public static Konto zugewiesen = new TestKonto(2, "Zugewiesen");
-    public static Konto storniert = new TestKonto(4, "Storniert");
+    public static final Konto offen= new TestKonto(1, "Offen");
+    public static final Konto zugewiesen = new TestKonto(2, "Zugewiesen");
+    public static final Konto storniert = new TestKonto(4, "Storniert");
 
     public TestZahlungsEingang(Art art, long referenzId, MonetaryAmount betrag,
             BuchungsRepository repository) {
